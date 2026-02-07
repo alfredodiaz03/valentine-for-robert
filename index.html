@@ -292,11 +292,6 @@
   <!-- FX LAYER -->
   <div class="fx-layer" id="fxLayer"></div>
 
-  <!-- MUSIC (royalty-free, hosted online) -->
-  <audio id="loveSong" preload="auto">
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>
-
   <!-- INTRO OVERLAY -->
   <section class="intro" id="intro">
     <div class="introCard">
@@ -402,6 +397,28 @@
         </ul>
       </section>
 
+      <!-- SPOTIFY (reveals after Cupid hit) -->
+      <section class="section" id="musicSection" style="display:none;">
+        <h2>🎶 Our Song</h2>
+
+        <p style="margin:0 0 12px; line-height:1.6;">
+          This song always makes me think of you.
+          Press play when you’re ready ❤️
+        </p>
+
+        <div style="border-radius:16px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,.15);">
+          <iframe
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/track/3XVBdLihbNbxUwZosxcGuJ"
+            width="100%"
+            height="152"
+            frameborder="0"
+            allow="encrypted-media"
+            loading="lazy">
+          </iframe>
+        </div>
+      </section>
+
       <p class="footer">Made by me, for you — <span id="dateStamp"></span></p>
     </main>
   </div>
@@ -495,9 +512,7 @@
     const shootBtn = document.getElementById("shootBtn");
     const resetBtn = document.getElementById("resetBtn");
     const lockedMessage = document.getElementById("lockedMessage");
-
-    // Music reference
-    const loveSong = document.getElementById("loveSong");
+    const musicSection = document.getElementById("musicSection");
 
     let hit = false;
     let animating = false;
@@ -538,12 +553,11 @@
 
         burstFX({ count: 28, items: ["💘","💖","❤️","🌹"] });
 
-        // Play music (Safari-safe because this was triggered by a tap)
-        loveSong.volume = 0.7;
-        loveSong.currentTime = 0;
-        loveSong.play().catch(() => {
-          // If Safari blocks for any reason, user can tap shoot again or refresh
-        });
+        // Reveal Spotify only
+        if (musicSection) {
+          musicSection.style.display = "block";
+          musicSection.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
 
       }, 720);
     }
