@@ -37,7 +37,7 @@
       inset: 0;
       pointer-events: none;
       overflow: hidden;
-      z-index: 9998; /* under intro (9999), above page */
+      z-index: 10050; /* make sure effects are visible above everything */
     }
     .fx{
       position: absolute;
@@ -292,6 +292,11 @@
   <!-- FX LAYER -->
   <div class="fx-layer" id="fxLayer"></div>
 
+  <!-- MUSIC (royalty-free, hosted online) -->
+  <audio id="loveSong" preload="auto">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
   <!-- INTRO OVERLAY -->
   <section class="intro" id="intro">
     <div class="introCard">
@@ -451,10 +456,7 @@
 
     function showMain(){
       mainWrap.style.visibility = "visible";
-
-      // Hearts/roses burst when the main page reveals
       burstFX({ count: 24, items: ["❤️","💖","💘","🌹"] });
-
       intro.classList.add("fadeOut");
       setTimeout(() => { intro.style.display = "none"; }, 540);
     }
@@ -486,13 +488,16 @@
     shootIntroBtn.addEventListener("click", shootIntro);
     skipBtn.addEventListener("click", showMain);
 
-    // MAIN cupid mini-game logic (guaranteed hit)
+    // MAIN cupid mini-game logic
     const gameArea = document.getElementById("gameArea");
     const arrow = document.getElementById("arrow");
     const heart = document.getElementById("heart");
     const shootBtn = document.getElementById("shootBtn");
     const resetBtn = document.getElementById("resetBtn");
     const lockedMessage = document.getElementById("lockedMessage");
+
+    // Music reference
+    const loveSong = document.getElementById("loveSong");
 
     let hit = false;
     let animating = false;
@@ -531,8 +536,15 @@
         heart.classList.add("pulse");
         lockedMessage.style.display = "block";
 
-        // Burst when he "hits" the heart
         burstFX({ count: 28, items: ["💘","💖","❤️","🌹"] });
+
+        // Play music (Safari-safe because this was triggered by a tap)
+        loveSong.volume = 0.7;
+        loveSong.currentTime = 0;
+        loveSong.play().catch(() => {
+          // If Safari blocks for any reason, user can tap shoot again or refresh
+        });
+
       }, 720);
     }
 
