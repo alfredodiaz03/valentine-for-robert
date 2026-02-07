@@ -31,6 +31,30 @@
       overflow-x:hidden;
     }
 
+    /* Floating hearts/roses layer */
+    .fx-layer{
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 9998; /* under intro (9999), above page */
+    }
+    .fx{
+      position: absolute;
+      bottom: -30px;
+      font-size: 22px;
+      opacity: .95;
+      filter: drop-shadow(0 8px 8px rgba(0,0,0,.12));
+      animation: floatUp var(--dur) ease-out forwards;
+      transform: translateX(-50%);
+      user-select:none;
+    }
+    @keyframes floatUp{
+      0%   { transform: translateX(-50%) translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      100% { transform: translateX(calc(-50% + var(--drift))) translateY(calc(-1 * var(--rise))) rotate(var(--rot)); opacity: 0; }
+    }
+
     /* INTRO OVERLAY */
     .intro{
       position:fixed;
@@ -265,6 +289,9 @@
 </head>
 
 <body>
+  <!-- FX LAYER -->
+  <div class="fx-layer" id="fxLayer"></div>
+
   <!-- INTRO OVERLAY -->
   <section class="intro" id="intro">
     <div class="introCard">
@@ -302,14 +329,12 @@
       </header>
 
       <section class="section">
-        <h2>📸 Us </h2>
+        <h2>📸 Us</h2>
         <div class="grid">
           <img class="photo" src="images/us1.jpg" alt="Us photo 1">
           <img class="photo" src="images/us2.jpg" alt="Us photo 2">
         </div>
-        <div class="footer">
-          
-        </div>
+        <div class="footer"></div>
       </section>
 
       <section class="section">
@@ -382,6 +407,38 @@
     document.getElementById("dateStamp").textContent =
       d.toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
 
+    // Floating hearts/roses effect
+    const fxLayer = document.getElementById("fxLayer");
+
+    function burstFX(opts = {}){
+      const count = opts.count ?? 18;
+      const items = opts.items ?? ["❤️","💖","💘","🌹"];
+      const width = window.innerWidth;
+
+      for (let i = 0; i < count; i++){
+        const el = document.createElement("div");
+        el.className = "fx";
+        el.textContent = items[Math.floor(Math.random() * items.length)];
+
+        const x = Math.random() * width;
+        const rise = 260 + Math.random() * 380;
+        const drift = (Math.random() * 160 - 80) + "px";
+        const rot = (Math.random() * 120 - 60) + "deg";
+        const dur = (900 + Math.random() * 900) + "ms";
+        const delay = (Math.random() * 180) + "ms";
+
+        el.style.left = x + "px";
+        el.style.setProperty("--rise", rise + "px");
+        el.style.setProperty("--drift", drift);
+        el.style.setProperty("--rot", rot);
+        el.style.setProperty("--dur", dur);
+        el.style.animationDelay = delay;
+
+        fxLayer.appendChild(el);
+        setTimeout(() => el.remove(), 2200);
+      }
+    }
+
     // INTRO overlay logic
     const intro = document.getElementById("intro");
     const mainWrap = document.getElementById("mainWrap");
@@ -394,6 +451,10 @@
 
     function showMain(){
       mainWrap.style.visibility = "visible";
+
+      // Hearts/roses burst when the main page reveals
+      burstFX({ count: 24, items: ["❤️","💖","💘","🌹"] });
+
       intro.classList.add("fadeOut");
       setTimeout(() => { intro.style.display = "none"; }, 540);
     }
@@ -469,6 +530,9 @@
         animating = false;
         heart.classList.add("pulse");
         lockedMessage.style.display = "block";
+
+        // Burst when he "hits" the heart
+        burstFX({ count: 28, items: ["💘","💖","❤️","🌹"] });
       }, 720);
     }
 
