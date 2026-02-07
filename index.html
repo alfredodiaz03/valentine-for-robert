@@ -25,37 +25,42 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       min-height:100vh;
-      background: radial-gradient(1200px 800px at 30% 20%, var(--bg1), transparent 55%),
-                  radial-gradient(1000px 700px at 80% 30%, #ffd1dc, transparent 55%),
-                  linear-gradient(135deg, var(--bg1), var(--bg2));
+      background:
+        radial-gradient(1200px 800px at 30% 20%, var(--bg1), transparent 55%),
+        radial-gradient(1000px 700px at 80% 30%, #ffd1dc, transparent 55%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
       overflow-x:hidden;
     }
 
-    /* Floating hearts/roses layer */
+    /* Floating hearts / roses */
     .fx-layer{
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 10050; /* make sure effects are visible above everything */
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:10050;
+      overflow:hidden;
     }
     .fx{
-      position: absolute;
-      bottom: -30px;
-      font-size: 22px;
-      opacity: .95;
-      filter: drop-shadow(0 8px 8px rgba(0,0,0,.12));
+      position:absolute;
+      bottom:-30px;
+      font-size:22px;
       animation: floatUp var(--dur) ease-out forwards;
       transform: translateX(-50%);
       user-select:none;
     }
     @keyframes floatUp{
-      0%   { transform: translateX(-50%) translateY(0) rotate(0deg); opacity: 0; }
-      10%  { opacity: 1; }
-      100% { transform: translateX(calc(-50% + var(--drift))) translateY(calc(-1 * var(--rise))) rotate(var(--rot)); opacity: 0; }
+      0%{opacity:0; transform:translateX(-50%) translateY(0);}
+      10%{opacity:1;}
+      100%{
+        opacity:0;
+        transform:
+          translateX(calc(-50% + var(--drift)))
+          translateY(calc(-1 * var(--rise)))
+          rotate(var(--rot));
+      }
     }
 
-    /* INTRO OVERLAY */
+    /* INTRO */
     .intro{
       position:fixed;
       inset:0;
@@ -64,52 +69,31 @@
       justify-content:center;
       padding:24px;
       z-index:9999;
-      background: radial-gradient(1200px 800px at 30% 20%, var(--bg1), transparent 55%),
-                  radial-gradient(1000px 700px at 80% 30%, #ffd1dc, transparent 55%),
-                  linear-gradient(135deg, var(--bg1), var(--bg2));
+      background:
+        radial-gradient(1200px 800px at 30% 20%, var(--bg1), transparent 55%),
+        radial-gradient(1000px 700px at 80% 30%, #ffd1dc, transparent 55%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
     }
     .introCard{
-      width:min(720px, 100%);
-      background: rgba(255,255,255,.92);
-      border:1px solid rgba(255,255,255,.55);
+      width:min(720px,100%);
+      background:rgba(255,255,255,.92);
       border-radius:24px;
-      box-shadow:var(--shadow);
       padding:22px;
       text-align:center;
-      backdrop-filter: blur(10px);
+      box-shadow:var(--shadow);
     }
     .introTitle{
       font-family:Pacifico,cursive;
+      font-size:clamp(32px,5vw,48px);
       color:#b3003c;
-      font-size:clamp(30px,5vw,48px);
-      margin:0 0 6px;
-    }
-    .introSub{
-      margin:0 0 14px;
-      opacity:.9;
-      line-height:1.5;
-      font-size:15px;
     }
 
     .stage{
       position:relative;
-      width:100%;
-      height:240px;
+      height:220px;
       border-radius:18px;
-      background:
-        radial-gradient(500px 260px at 30% 40%, rgba(255,59,107,.16), transparent 60%),
-        linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.45));
-      border:1px solid rgba(255,59,107,.18);
+      background:rgba(255,255,255,.6);
       overflow:hidden;
-    }
-    .cloud{
-      position:absolute;
-      right:18px;
-      top:50%;
-      transform:translateY(-50%);
-      font-size:64px;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,.10));
-      user-select:none;
     }
     .arrowIntro{
       position:absolute;
@@ -117,93 +101,40 @@
       top:50%;
       transform:translateY(-50%);
       font-size:46px;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,.12));
-      user-select:none;
-      transition: left 800ms cubic-bezier(.2,.9,.2,1);
+      transition:left 800ms ease;
     }
-    .sparkle{
+    .cloud{
       position:absolute;
-      left:50%;
-      top:32%;
-      transform:translate(-50%,-50%);
-      font-size:40px;
-      opacity:0;
-      transition: opacity 250ms ease;
-      user-select:none;
+      right:18px;
+      top:50%;
+      transform:translateY(-50%);
+      font-size:64px;
     }
 
-    .btnrow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:center;
-      margin-top:12px;
-    }
-    button{
-      border:none;
-      border-radius:999px;
-      padding:12px 16px;
-      font-weight:900;
-      cursor:pointer;
-      font-size:14px;
-      transition: transform .08s ease, opacity .2s ease;
-    }
-    button:active{ transform: scale(.98); }
-    .primary{
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      color:white;
-      box-shadow: 0 10px 22px rgba(255,59,107,.28);
-    }
-    .secondary{
-      background: rgba(255,255,255,.9);
-      border:1px solid rgba(0,0,0,.10);
-    }
+    .fadeOut{ animation: fadeOut .5s forwards; }
+    @keyframes fadeOut{ to{opacity:0; visibility:hidden;} }
 
-    .tinyHint{
-      margin-top:10px;
-      font-size:13px;
-      opacity:.85;
-    }
-
-    .fadeOut{
-      animation: fadeOut 520ms ease forwards;
-    }
-    @keyframes fadeOut{
-      to{ opacity:0; transform: scale(.98); visibility:hidden; }
-    }
-
-    /* MAIN PAGE */
+    /* MAIN */
     .wrap{
       min-height:100vh;
       display:flex;
-      align-items:center;
       justify-content:center;
+      align-items:center;
       padding:24px;
     }
     .card{
-      width:min(820px, 100%);
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(10px);
-      border:1px solid rgba(255,255,255,.55);
+      width:min(820px,100%);
+      background:rgba(255,255,255,.92);
       border-radius:24px;
-      box-shadow:var(--shadow);
       padding:24px;
+      box-shadow:var(--shadow);
     }
-    header{
-      text-align:center;
-      padding:8px 10px 12px;
-    }
+
     h1{
       font-family:Pacifico,cursive;
       color:#b3003c;
+      text-align:center;
       font-size:clamp(34px,5vw,54px);
-      margin:0 0 10px;
-    }
-    .subtitle{
-      margin:0;
-      font-size:15px;
-      opacity:.9;
-      line-height:1.5;
     }
 
     .section{
@@ -211,60 +142,28 @@
       border-radius:18px;
       padding:16px;
       margin:14px 0;
-      border:1px solid rgba(0,0,0,.06);
     }
-    .section h2{ margin:0 0 10px; font-size:18px; }
 
-    /* photo grid */
     .grid{
       display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns:1fr 1fr;
       gap:10px;
     }
-    @media (max-width:640px){
-      .grid{ grid-template-columns: 1fr; }
-    }
+    @media(max-width:640px){ .grid{grid-template-columns:1fr;} }
+
     .photo{
       width:100%;
-      aspect-ratio: 4/3;
+      aspect-ratio:4/3;
       object-fit:cover;
       border-radius:16px;
-      border:1px solid rgba(0,0,0,.08);
-      box-shadow:0 14px 28px rgba(0,0,0,.10);
-      background:linear-gradient(135deg, rgba(255,255,255,.7), rgba(255,255,255,.2));
     }
 
-    .secret{
-      display:none;
-      margin-top:12px;
-      padding:14px;
-      background:rgba(255,59,107,.10);
-      border: 1px dashed rgba(255,59,107,.35);
-      border-radius:16px;
-      font-weight:900;
-      text-align:center;
-      line-height:1.5;
-    }
-
-    /* Cupid mini-game in main card */
     .game{
       position:relative;
       height:220px;
-      background:
-        radial-gradient(500px 240px at 30% 40%, rgba(255,59,107,.16), transparent 60%),
-        linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.45));
       border-radius:18px;
-      border:1px solid rgba(255,59,107,.18);
+      background:rgba(255,255,255,.6);
       overflow:hidden;
-    }
-    .heartTarget{
-      position:absolute;
-      right:18px;
-      top:50%;
-      transform:translateY(-50%);
-      font-size:52px;
-      user-select:none;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,.10));
     }
     .arrow{
       position:absolute;
@@ -272,286 +171,120 @@
       top:50%;
       transform:translateY(-50%);
       font-size:40px;
-      user-select:none;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,.12));
     }
-    .pulse{
-      animation: pulse .55s ease-in-out infinite;
+    .heart{
+      position:absolute;
+      right:18px;
+      top:50%;
+      transform:translateY(-50%);
+      font-size:52px;
     }
-    @keyframes pulse{
-      0%,100%{ transform: translateY(-50%) scale(1); }
-      50%{ transform: translateY(-50%) scale(1.12); }
-    }
+    .pulse{ animation:pulse .6s infinite; }
+    @keyframes pulse{50%{transform:translateY(-50%) scale(1.15);} }
 
-    ul{ margin:8px 0 0 18px; padding:0; line-height:1.6; }
-    .footer{ text-align:center; font-size:13px; opacity:.82; margin-top:10px; }
+    .secret{ display:none; text-align:center; font-weight:900; }
+
+    button{
+      border:none;
+      border-radius:999px;
+      padding:12px 16px;
+      font-weight:900;
+      cursor:pointer;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      color:white;
+    }
   </style>
 </head>
 
 <body>
-  <!-- FX LAYER -->
-  <div class="fx-layer" id="fxLayer"></div>
 
-  <!-- MUSIC (royalty-free, hosted online) -->
-  <audio id="loveSong" preload="auto">
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>
+<div class="fx-layer" id="fxLayer"></div>
 
-  <!-- INTRO OVERLAY -->
-  <section class="intro" id="intro">
-    <div class="introCard">
-      <h2 class="introTitle">One quick thing… 💘</h2>
-      <p class="introSub">
-        Robert, before you open your Valentine, you have to pass the official Cupid test.
-        (Very serious. Very scientific.)
-      </p>
-
-      <div class="stage" id="stage">
-        <div class="arrowIntro" id="arrowIntro">🏹</div>
-        <div class="cloud" id="cloud">☁️</div>
-        <div class="sparkle" id="sparkle">✨💥✨</div>
-      </div>
-
-      <div class="btnrow">
-        <button class="primary" id="shootIntroBtn">Shoot 💘</button>
-        <button class="secondary" id="skipBtn">Skip (I’m impatient)</button>
-      </div>
-
-      <div class="tinyHint">Tip: Tap “Shoot 💘” and watch the magic.</div>
+<section class="intro" id="intro">
+  <div class="introCard">
+    <h2 class="introTitle">One quick thing… 💘</h2>
+    <div class="stage">
+      <div class="arrowIntro" id="arrowIntro">🏹</div>
+      <div class="cloud">☁️</div>
     </div>
-  </section>
-
-  <!-- MAIN PAGE (hidden until intro finishes) -->
-  <div class="wrap" id="mainWrap" style="visibility:hidden;">
-    <main class="card">
-      <header>
-        <h1>Happy Valentine’s Day ❤️</h1>
-        <p class="subtitle">
-          To Robert —<br/>
-          I made this tiny little corner of the internet just for you.<br/>
-          If you’re reading this on your phone, congrats: you successfully opened my love.
-        </p>
-      </header>
-
-      <section class="section">
-        <h2>📸 Us</h2>
-        <div class="grid">
-          <img class="photo" src="images/us1.jpg" alt="Us photo 1">
-          <img class="photo" src="images/us2.jpg" alt="Us photo 2">
-        </div>
-        <div class="footer"></div>
-      </section>
-
-      <section class="section">
-        <h2>🏹 Cupid Challenge</h2>
-        <p style="margin:0 0 10px;">Okay Robert… shoot the arrow and hit the heart to unlock your Valentine 💘</p>
-
-        <div class="game" id="gameArea">
-          <div class="arrow" id="arrow">🏹</div>
-          <div class="heartTarget" id="heart">❤️</div>
-        </div>
-
-        <div class="btnrow">
-          <button class="primary" id="shootBtn">Shoot 💘</button>
-          <button class="secondary" id="resetBtn">Reset</button>
-        </div>
-
-        <div class="secret" id="lockedMessage">
-          You hit it 😭❤️<br/>
-          I choose you. Always.<br/>
-          Now come collect your Valentine kisses. (Legally binding.)
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>💌 Why I Love You</h2>
-        <p style="margin:0; line-height:1.6;">
-          Robert, I love you because you make my life feel lighter, funnier, and safer all at the same time.
-          You’re my favorite person to do nothing with, and also my favorite person to do everything with.
-          You’re the kind of love that feels like home… but with better jokes and better snacks.
-        </p>
-        <ul>
-          <li>You make me laugh even when I’m trying to be serious (rude, but I love it).</li>
-          <li>You make ordinary days feel special just by being in them.</li>
-          <li>You’re steady, supportive, and somehow still adorable doing basic tasks.</li>
-          <li>I trust you with my heart… (this is serious).</li>
-          <li>Honestly? 10/10 boyfriend. Would date again.</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>💬 Things I Never Say Enough</h2>
-        <ul>
-          <li>Thank you for choosing me, even on the hard days.</li>
-          <li>Thank you for making me feel safe, loved, and understood.</li>
-          <li>I notice the little things you do more than you realize.</li>
-          <li>You make my life better just by being in it.</li>
-          <li>I don’t say it enough, but I’m really grateful for you.</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>📊 Our Love Stats</h2>
-        <ul>
-          <li>Compatibility: 100% (scientifically verified by me)</li>
-          <li>Laughs per day: Too many to count</li>
-          <li>Your cuteness level: Honestly unfair</li>
-          <li>My favorite place: Wherever you are</li>
-          <li>Days I want to spend with you: All of them</li>
-          <li>Boyfriend rating: ⭐⭐⭐⭐⭐ (would recommend)</li>
-        </ul>
-      </section>
-
-      <p class="footer">Made by me, for you — <span id="dateStamp"></span></p>
-    </main>
+    <button id="shootIntroBtn">Shoot 💘</button>
   </div>
+</section>
 
-  <script>
-    // Date stamp
-    const d = new Date();
-    document.getElementById("dateStamp").textContent =
-      d.toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
+<div class="wrap" id="mainWrap" style="visibility:hidden;">
+  <main class="card">
+    <h1>Happy Valentine’s Day ❤️</h1>
 
-    // Floating hearts/roses effect
-    const fxLayer = document.getElementById("fxLayer");
+    <section class="section">
+      <h2>📸 Us</h2>
+      <div class="grid">
+        <img class="photo" src="images/us1.jpg">
+        <img class="photo" src="images/us2.jpg">
+      </div>
+    </section>
 
-    function burstFX(opts = {}){
-      const count = opts.count ?? 18;
-      const items = opts.items ?? ["❤️","💖","💘","🌹"];
-      const width = window.innerWidth;
+    <section class="section">
+      <h2>🏹 Cupid Challenge</h2>
+      <div class="game">
+        <div class="arrow" id="arrow">🏹</div>
+        <div class="heart" id="heart">❤️</div>
+      </div>
+      <button id="shootBtn">Shoot 💘</button>
+      <div class="secret" id="lockedMessage">I choose you. Always. ❤️</div>
+    </section>
 
-      for (let i = 0; i < count; i++){
-        const el = document.createElement("div");
-        el.className = "fx";
-        el.textContent = items[Math.floor(Math.random() * items.length)];
+    <!-- SPOTIFY -->
+    <section class="section" id="musicSection" style="display:none;">
+      <h2>🎶 Our Song</h2>
+      <p>This song makes me think of you every time I hear it.</p>
+      <iframe
+        style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/3XVBdLihbNbxUwZosxcGuJ"
+        width="100%"
+        height="152"
+        frameborder="0"
+        allow="encrypted-media">
+      </iframe>
+    </section>
 
-        const x = Math.random() * width;
-        const rise = 260 + Math.random() * 380;
-        const drift = (Math.random() * 160 - 80) + "px";
-        const rot = (Math.random() * 120 - 60) + "deg";
-        const dur = (900 + Math.random() * 900) + "ms";
-        const delay = (Math.random() * 180) + "ms";
+  </main>
+</div>
 
-        el.style.left = x + "px";
-        el.style.setProperty("--rise", rise + "px");
-        el.style.setProperty("--drift", drift);
-        el.style.setProperty("--rot", rot);
-        el.style.setProperty("--dur", dur);
-        el.style.animationDelay = delay;
+<script>
+const fxLayer=document.getElementById("fxLayer");
+function burstFX(count=28){
+  const items=["❤️","💖","💘","🌹"];
+  for(let i=0;i<count;i++){
+    const el=document.createElement("div");
+    el.className="fx";
+    el.textContent=items[Math.floor(Math.random()*items.length)];
+    el.style.left=Math.random()*window.innerWidth+"px";
+    el.style.setProperty("--rise",(300+Math.random()*400)+"px");
+    el.style.setProperty("--drift",(Math.random()*200-100)+"px");
+    el.style.setProperty("--rot",(Math.random()*120-60)+"deg");
+    el.style.setProperty("--dur",(1000+Math.random()*800)+"ms");
+    fxLayer.appendChild(el);
+    setTimeout(()=>el.remove(),2200);
+  }
+}
 
-        fxLayer.appendChild(el);
-        setTimeout(() => el.remove(), 2200);
-      }
-    }
+document.getElementById("shootIntroBtn").onclick=()=>{
+  document.getElementById("intro").classList.add("fadeOut");
+  setTimeout(()=>{
+    document.getElementById("intro").style.display="none";
+    document.getElementById("mainWrap").style.visibility="visible";
+    burstFX(36);
+  },520);
+};
 
-    // INTRO overlay logic
-    const intro = document.getElementById("intro");
-    const mainWrap = document.getElementById("mainWrap");
-    const shootIntroBtn = document.getElementById("shootIntroBtn");
-    const skipBtn = document.getElementById("skipBtn");
-    const arrowIntro = document.getElementById("arrowIntro");
-    const cloud = document.getElementById("cloud");
-    const sparkle = document.getElementById("sparkle");
-    let introShot = false;
+document.getElementById("shootBtn").onclick=()=>{
+  document.getElementById("heart").classList.add("pulse");
+  document.getElementById("lockedMessage").style.display="block";
+  document.getElementById("musicSection").style.display="block";
+  document.getElementById("musicSection").scrollIntoView({behavior:"smooth"});
+  burstFX(40);
+};
+</script>
 
-    function showMain(){
-      mainWrap.style.visibility = "visible";
-      burstFX({ count: 24, items: ["❤️","💖","💘","🌹"] });
-      intro.classList.add("fadeOut");
-      setTimeout(() => { intro.style.display = "none"; }, 540);
-    }
-
-    function shootIntro(){
-      if (introShot) return;
-      introShot = true;
-      shootIntroBtn.disabled = true;
-      shootIntroBtn.style.opacity = ".75";
-
-      const stage = document.getElementById("stage").getBoundingClientRect();
-      const a = arrowIntro.getBoundingClientRect();
-      const c = cloud.getBoundingClientRect();
-
-      const cloudCenterX = (c.left + c.right)/2 - stage.left;
-      const arrowHalf = a.width/2;
-      const dest = Math.max(18, Math.min(stage.width - a.width - 18, cloudCenterX - arrowHalf));
-
-      arrowIntro.style.left = dest + "px";
-
-      setTimeout(() => {
-        sparkle.style.opacity = "1";
-        cloud.style.transform = "translateY(-50%) scale(1.06)";
-      }, 780);
-
-      setTimeout(() => showMain(), 1150);
-    }
-
-    shootIntroBtn.addEventListener("click", shootIntro);
-    skipBtn.addEventListener("click", showMain);
-
-    // MAIN cupid mini-game logic
-    const gameArea = document.getElementById("gameArea");
-    const arrow = document.getElementById("arrow");
-    const heart = document.getElementById("heart");
-    const shootBtn = document.getElementById("shootBtn");
-    const resetBtn = document.getElementById("resetBtn");
-    const lockedMessage = document.getElementById("lockedMessage");
-
-    // Music reference
-    const loveSong = document.getElementById("loveSong");
-
-    let hit = false;
-    let animating = false;
-
-    function resetGame(){
-      hit = false;
-      animating = false;
-      lockedMessage.style.display = "none";
-      heart.classList.remove("pulse");
-      arrow.style.left = "18px";
-      arrow.style.transition = "none";
-      shootBtn.disabled = false;
-      shootBtn.style.opacity = "1";
-      requestAnimationFrame(() => { arrow.style.transition = "left 700ms ease"; });
-    }
-
-    function shoot(){
-      if (hit || animating) return;
-      animating = true;
-      shootBtn.disabled = true;
-      shootBtn.style.opacity = ".75";
-
-      const g = gameArea.getBoundingClientRect();
-      const a = arrow.getBoundingClientRect();
-      const h = heart.getBoundingClientRect();
-
-      const heartCenterX = (h.left + h.right)/2 - g.left;
-      const arrowHalf = a.width / 2;
-      const dest = Math.max(18, Math.min(g.width - a.width - 18, heartCenterX - arrowHalf));
-
-      arrow.style.left = dest + "px";
-
-      setTimeout(() => {
-        hit = true;
-        animating = false;
-        heart.classList.add("pulse");
-        lockedMessage.style.display = "block";
-
-        burstFX({ count: 28, items: ["💘","💖","❤️","🌹"] });
-
-        // Play music (Safari-safe because this was triggered by a tap)
-        loveSong.volume = 0.7;
-        loveSong.currentTime = 0;
-        loveSong.play().catch(() => {
-          // If Safari blocks for any reason, user can tap shoot again or refresh
-        });
-
-      }, 720);
-    }
-
-    shootBtn.addEventListener("click", shoot);
-    resetBtn.addEventListener("click", resetGame);
-
-    resetGame();
-  </script>
 </body>
 </html>
