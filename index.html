@@ -1,373 +1,243 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Happy Valentine’s Day ❤️</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Robert Level 32 🎂❤️</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg1:#ffdde1;
-      --bg2:#ee9ca7;
-      --accent:#ff3b6b;
-      --accent2:#ff7aa2;
-      --text:#2b2b2b;
-      --shadow:0 20px 50px rgba(0,0,0,.15);
-    }
-    *{box-sizing:border-box}
+<style>
+  :root{
+    --bg1:#ffe3ec;
+    --bg2:#ffc2d1;
+    --card:#ffffff;
+    --accent:#ff4d6d;
+    --accent2:#ff8fab;
+    --text:#2b2b2b;
+    --shadow:0 20px 50px rgba(0,0,0,.15);
+  }
 
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-      min-height:100vh;
-      background: radial-gradient(1200px 800px at 30% 20%, var(--bg1), transparent 55%),
-                  radial-gradient(1000px 700px at 80% 30%, #ffd1dc, transparent 55%),
-                  linear-gradient(135deg, var(--bg1), var(--bg2));
-      overflow-x:hidden;
-    }
+  *{box-sizing:border-box}
 
-    /* Floating hearts/roses layer */
-    .fx-layer{
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 10050; /* make sure effects are visible above everything */
-    }
-    .fx{
-      position: absolute;
-      bottom: -30px;
-      font-size: 22px;
-      opacity: .95;
-      filter: drop-shadow(0 8px 8px rgba(0,0,0,.12));
-      animation: floatUp var(--dur) ease-out forwards;
-      transform: translateX(-50%);
-      user-select:none;
-    }
-    @keyframes floatUp{
-      0%   { transform: translateX(-50%) translateY(0) rotate(0deg); opacity: 0; }
-      10%  { opacity: 1; }
-      100% { transform: translateX(calc(-50% + var(--drift))) translateY(calc(-1 * var(--rise))) rotate(var(--rot)); opacity: 0; }
-    }
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:var(--text);
+    min-height:100vh;
+    background:
+      radial-gradient(1200px 800px at 30% 20%, var(--bg1), transparent 55%),
+      radial-gradient(1000px 700px at 80% 30%, #ffd7e2, transparent 55%),
+      linear-gradient(135deg, var(--bg1), var(--bg2));
+    overflow-x:hidden;
+  }
 
-    /* INTRO OVERLAY */
-    .intro{
-      position:fixed;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      z-index:9999;
-      background: radial-gradient(1200px 800px at 30% 20%, var(--bg1), transparent 55%),
-                  radial-gradient(1000px 700px at 80% 30%, #ffd1dc, transparent 55%),
-                  linear-gradient(135deg, var(--bg1), var(--bg2));
-    }
-    .introCard{
-      width:min(720px, 100%);
-      background: rgba(255,255,255,.92);
-      border:1px solid rgba(255,255,255,.55);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      padding:22px;
-      text-align:center;
-      backdrop-filter: blur(10px);
-    }
-    .introTitle{
-      font-family:Pacifico,cursive;
-      color:#b3003c;
-      font-size:clamp(30px,5vw,48px);
-      margin:0 0 6px;
-    }
-    .introSub{
-      margin:0 0 14px;
-      opacity:.9;
-      line-height:1.5;
-      font-size:15px;
-    }
+  .wrap{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
 
-    .stage{
-      position:relative;
-      width:100%;
-      height:240px;
-      border-radius:18px;
-      background:
-        radial-gradient(500px 260px at 30% 40%, rgba(255,59,107,.16), transparent 60%),
-        linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.45));
-      border:1px solid rgba(255,59,107,.18);
-      overflow:hidden;
-    }
-    .cloud{
-      position:absolute;
-      right:18px;
-      top:50%;
-      transform:translateY(-50%);
-      font-size:64px;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,.10));
-      user-select:none;
-    }
-    .arrowIntro{
-      position:absolute;
-      left:18px;
-      top:50%;
-      transform:translateY(-50%);
-      font-size:46px;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,.12));
-      user-select:none;
-      transition: left 800ms cubic-bezier(.2,.9,.2,1);
-    }
-    .sparkle{
-      position:absolute;
-      left:50%;
-      top:32%;
-      transform:translate(-50%,-50%);
-      font-size:40px;
+  .card{
+    width:min(860px,100%);
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(10px);
+    border-radius:28px;
+    box-shadow:var(--shadow);
+    padding:24px;
+  }
+
+  h1{
+    margin:0 0 10px;
+    font-family:Pacifico,cursive;
+    text-align:center;
+    color:#b3003c;
+    font-size:clamp(34px,5vw,58px);
+  }
+
+  .subtitle{
+    text-align:center;
+    font-size:16px;
+    line-height:1.6;
+    margin:0 0 20px;
+  }
+
+  .timerBox{
+    background:#fff5f7;
+    border:1px solid rgba(0,0,0,.06);
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+    margin:18px 0;
+  }
+
+  .countdown{
+    font-size:clamp(28px,6vw,44px);
+    font-weight:800;
+    margin:12px 0 6px;
+    color:#b3003c;
+  }
+
+  .mini{
+    font-size:14px;
+    opacity:.8;
+  }
+
+  .section{
+    background:#fff7f9;
+    border:1px solid rgba(0,0,0,.06);
+    border-radius:20px;
+    padding:18px;
+    margin:16px 0;
+  }
+
+  .section h2{
+    margin:0 0 10px;
+    font-size:20px;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+
+  @media (max-width:640px){
+    .grid{ grid-template-columns:1fr; }
+  }
+
+  .photo{
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    border-radius:16px;
+    border:1px solid rgba(0,0,0,.08);
+    box-shadow:0 14px 28px rgba(0,0,0,.10);
+  }
+
+  ul{
+    margin:8px 0 0 18px;
+    padding:0;
+    line-height:1.7;
+  }
+
+  .hidden{
+    display:none;
+  }
+
+  .birthdayFlash{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.25);
+    backdrop-filter:blur(4px);
+    z-index:9999;
+    text-align:center;
+    padding:24px;
+  }
+
+  .birthdayFlash.show{
+    display:flex;
+    animation:flashFade 2.4s ease forwards;
+  }
+
+  .birthdayFlashText{
+    font-family:Pacifico,cursive;
+    color:#b3003c;
+    font-size:clamp(34px,7vw,72px);
+    text-shadow:0 8px 18px rgba(0,0,0,.12);
+  }
+
+  @keyframes flashFade{
+    0%{opacity:0}
+    15%{opacity:1}
+    75%{opacity:1}
+    100%{opacity:0}
+  }
+
+  .fx{
+    position:fixed;
+    bottom:-30px;
+    font-size:24px;
+    pointer-events:none;
+    animation:floatUp var(--dur) ease-out forwards;
+    transform:translateX(-50%);
+    z-index:10000;
+  }
+
+  @keyframes floatUp{
+    0%{opacity:0; transform:translateX(-50%) translateY(0) rotate(0deg);}
+    10%{opacity:1;}
+    100%{
       opacity:0;
-      transition: opacity 250ms ease;
-      user-select:none;
+      transform:translateX(calc(-50% + var(--drift))) translateY(calc(-1 * var(--rise))) rotate(var(--rot));
     }
+  }
 
-    .btnrow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:center;
-      margin-top:12px;
-    }
-    button{
-      border:none;
-      border-radius:999px;
-      padding:12px 16px;
-      font-weight:900;
-      cursor:pointer;
-      font-size:14px;
-      transition: transform .08s ease, opacity .2s ease;
-    }
-    button:active{ transform: scale(.98); }
-    .primary{
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      color:white;
-      box-shadow: 0 10px 22px rgba(255,59,107,.28);
-    }
-    .secondary{
-      background: rgba(255,255,255,.9);
-      border:1px solid rgba(0,0,0,.10);
-    }
+  .spotifyWrap{
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+  }
 
-    .tinyHint{
-      margin-top:10px;
-      font-size:13px;
-      opacity:.85;
-    }
-
-    .fadeOut{
-      animation: fadeOut 520ms ease forwards;
-    }
-    @keyframes fadeOut{
-      to{ opacity:0; transform: scale(.98); visibility:hidden; }
-    }
-
-    /* MAIN PAGE */
-    .wrap{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-    }
-    .card{
-      width:min(820px, 100%);
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(10px);
-      border:1px solid rgba(255,255,255,.55);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      padding:24px;
-    }
-    header{
-      text-align:center;
-      padding:8px 10px 12px;
-    }
-    h1{
-      font-family:Pacifico,cursive;
-      color:#b3003c;
-      font-size:clamp(34px,5vw,54px);
-      margin:0 0 10px;
-    }
-    .subtitle{
-      margin:0;
-      font-size:15px;
-      opacity:.9;
-      line-height:1.5;
-    }
-
-    .section{
-      background:rgba(255,255,255,.85);
-      border-radius:18px;
-      padding:16px;
-      margin:14px 0;
-      border:1px solid rgba(0,0,0,.06);
-    }
-    .section h2{ margin:0 0 10px; font-size:18px; }
-
-    /* photo grid */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap:10px;
-    }
-    @media (max-width:640px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-    .photo{
-      width:100%;
-      aspect-ratio: 4/3;
-      object-fit:cover;
-      border-radius:16px;
-      border:1px solid rgba(0,0,0,.08);
-      box-shadow:0 14px 28px rgba(0,0,0,.10);
-      background:linear-gradient(135deg, rgba(255,255,255,.7), rgba(255,255,255,.2));
-    }
-
-    .secret{
-      display:none;
-      margin-top:12px;
-      padding:14px;
-      background:rgba(255,59,107,.10);
-      border: 1px dashed rgba(255,59,107,.35);
-      border-radius:16px;
-      font-weight:900;
-      text-align:center;
-      line-height:1.5;
-    }
-
-    /* Cupid mini-game in main card */
-    .game{
-      position:relative;
-      height:220px;
-      background:
-        radial-gradient(500px 240px at 30% 40%, rgba(255,59,107,.16), transparent 60%),
-        linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.45));
-      border-radius:18px;
-      border:1px solid rgba(255,59,107,.18);
-      overflow:hidden;
-    }
-    .heartTarget{
-      position:absolute;
-      right:18px;
-      top:50%;
-      transform:translateY(-50%);
-      font-size:52px;
-      user-select:none;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,.10));
-    }
-    .arrow{
-      position:absolute;
-      left:18px;
-      top:50%;
-      transform:translateY(-50%);
-      font-size:40px;
-      user-select:none;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,.12));
-    }
-    .pulse{
-      animation: pulse .55s ease-in-out infinite;
-    }
-    @keyframes pulse{
-      0%,100%{ transform: translateY(-50%) scale(1); }
-      50%{ transform: translateY(-50%) scale(1.12); }
-    }
-
-    ul{ margin:8px 0 0 18px; padding:0; line-height:1.6; }
-    .footer{ text-align:center; font-size:13px; opacity:.82; margin-top:10px; }
-  </style>
+  .footer{
+    text-align:center;
+    font-size:13px;
+    opacity:.8;
+    margin-top:18px;
+  }
+</style>
 </head>
 
 <body>
-  <!-- FX LAYER -->
-  <div class="fx-layer" id="fxLayer"></div>
 
-  <!-- INTRO OVERLAY -->
-  <section class="intro" id="intro">
-    <div class="introCard">
-      <h2 class="introTitle">One quick thing… 💘</h2>
-      <p class="introSub">
-        Robert, before you open your Valentine, you have to pass the official Cupid test.
-        (Very serious. Very scientific.)
-      </p>
+<div class="birthdayFlash" id="birthdayFlash">
+  <div class="birthdayFlashText">HAPPY BIRTHDAY ROBERT 🎉</div>
+</div>
 
-      <div class="stage" id="stage">
-        <div class="arrowIntro" id="arrowIntro">🏹</div>
-        <div class="cloud" id="cloud">☁️</div>
-        <div class="sparkle" id="sparkle">✨💥✨</div>
-      </div>
+<div class="wrap">
+  <main class="card">
+    <h1>Level 32 Loading… 🎂❤️</h1>
+    <p class="subtitle">
+      Robert… Level 32 unlocks on April 1st 🎂❤️<br>
+      (1994 → 2026… look at you 🥹)
+    </p>
 
-      <div class="btnrow">
-        <button class="primary" id="shootIntroBtn">Shoot 💘</button>
-        <button class="secondary" id="skipBtn">Skip (I’m impatient)</button>
-      </div>
+    <section class="timerBox">
+      <div style="font-weight:800;">Birthday Unlock Countdown</div>
+      <div class="countdown" id="countdown">Loading...</div>
+      <div class="mini">Don’t skip ahead… it’s worth the wait ❤️</div>
+    </section>
 
-      <div class="tinyHint">Tip: Tap “Shoot 💘” and watch the magic.</div>
-    </div>
-  </section>
-
-  <!-- MAIN PAGE (hidden until intro finishes) -->
-  <div class="wrap" id="mainWrap" style="visibility:hidden;">
-    <main class="card">
-      <header>
-        <h1>Happy Valentine’s Day ❤️</h1>
-        <p class="subtitle">
-          To Robert —<br/>
-          I made this tiny little corner of the internet just for you.<br/>
-          If you’re reading this on your phone, congrats: you successfully opened my love.
-        </p>
-      </header>
-
+    <div id="mainContent" class="hidden">
       <section class="section">
         <h2>📸 Us</h2>
         <div class="grid">
           <img class="photo" src="images/us1.jpg" alt="Us photo 1">
           <img class="photo" src="images/us2.jpg" alt="Us photo 2">
         </div>
-        <div class="footer"></div>
       </section>
 
       <section class="section">
-        <h2>🏹 Cupid Challenge</h2>
-        <p style="margin:0 0 10px;">Okay Robert… shoot the arrow and hit the heart to unlock your Valentine 💘</p>
-
-        <div class="game" id="gameArea">
-          <div class="arrow" id="arrow">🏹</div>
-          <div class="heartTarget" id="heart">❤️</div>
-        </div>
-
-        <div class="btnrow">
-          <button class="primary" id="shootBtn">Shoot 💘</button>
-          <button class="secondary" id="resetBtn">Reset</button>
-        </div>
-
-        <div class="secret" id="lockedMessage">
-          You hit it 😭❤️<br/>
-          I choose you. Always.<br/>
-          Now come collect your Valentine kisses. (Legally binding.)
-        </div>
+        <h2>🏆 Why I’m Proud of You</h2>
+        <p>
+          I am so proud of the man you are. The way you show up, the way you keep going, the way you handle life, and the way you care for the people around you always amazes me.
+        </p>
+        <p>
+          You inspire me more than you probably realize, and I hope this year reminds you just how capable, strong, and special you are.
+        </p>
       </section>
 
-      <!-- SPOTIFY (reveals after Cupid hit) - MOVED ABOVE "Why I Love You" -->
-      <section class="section" id="musicSection" style="display:none;">
-        <h2>🎶 Our Song</h2>
-
+      <section class="section">
+        <h2>🎶 Your Song</h2>
         <p style="margin:0 0 12px; line-height:1.6;">
-          This song always makes me think of you.
           Press play when you’re ready ❤️
         </p>
-
-        <div style="border-radius:16px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,.15);">
+        <div class="spotifyWrap">
           <iframe
             style="border-radius:12px"
             src="https://open.spotify.com/embed/track/3XVBdLihbNbxUwZosxcGuJ"
@@ -381,191 +251,99 @@
       </section>
 
       <section class="section">
-        <h2>💌 Why I Love You</h2>
-        <p style="margin:0; line-height:1.6;">
-          Robert, I love you because you make my life feel lighter, funnier, and safer all at the same time.
-          You’re my favorite person to do nothing with, and also my favorite person to do everything with.
-          You’re the kind of love that feels like home… but with better jokes and better snacks.
+        <h2>🙏 Why I’m Thankful for You</h2>
+        <ul>
+          <li>Thank you for loving me the way you do.</li>
+          <li>Thank you for making me feel safe and supported.</li>
+          <li>Thank you for being patient, steady, and kind.</li>
+          <li>Thank you for being someone I can always count on.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>❤️ Why I Love You</h2>
+        <p>
+          I love you because you make life feel lighter, warmer, and happier. You are my favorite person to laugh with, to dream with, and to just exist with.
         </p>
-        <ul>
-          <li>You make me laugh even when I’m trying to be serious (rude, but I love it).</li>
-          <li>You make ordinary days feel special just by being in them.</li>
-          <li>You’re steady, supportive, and somehow still adorable doing basic tasks.</li>
-          <li>I trust you with my heart… (this is serious).</li>
-          <li>Honestly? 10/10 boyfriend. Would date again.</li>
-        </ul>
+        <p>
+          You make ordinary days feel special, and I feel lucky that I get to love you through all of your chapters — including Level 32.
+        </p>
       </section>
 
       <section class="section">
-        <h2>💬 Things I Never Say Enough</h2>
-        <ul>
-          <li>Thank you for choosing me, even on the hard days.</li>
-          <li>Thank you for making me feel safe, loved, and understood.</li>
-          <li>I notice the little things you do more than you realize.</li>
-          <li>You make my life better just by being in it.</li>
-          <li>I don’t say it enough, but I’m really grateful for you.</li>
-        </ul>
+        <h2>💌 Final Message</h2>
+        <p>
+          Happy 32nd birthday, my love.<br><br>
+          I am so proud of you.<br>
+          I am so thankful for you.<br>
+          And I love you more than I can explain.<br><br>
+          I’ll always choose you. ❤️
+        </p>
       </section>
+    </div>
 
-      <section class="section">
-        <h2>📊 Our Love Stats</h2>
-        <ul>
-          <li>Compatibility: 100% (scientifically verified by me)</li>
-          <li>Laughs per day: Too many to count</li>
-          <li>Your cuteness level: Honestly unfair</li>
-          <li>My favorite place: Wherever you are</li>
-          <li>Days I want to spend with you: All of them</li>
-          <li>Boyfriend rating: ⭐⭐⭐⭐⭐ (would recommend)</li>
-        </ul>
-      </section>
+    <div class="footer">Made by me, for you — <span id="dateStamp"></span></div>
+  </main>
+</div>
 
-      <p class="footer">Made by me, for you — <span id="dateStamp"></span></p>
-    </main>
-  </div>
+<script>
+  document.getElementById("dateStamp").textContent =
+    new Date().toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
 
-  <script>
-    // Date stamp
-    const d = new Date();
-    document.getElementById("dateStamp").textContent =
-      d.toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
+  // TEST VERSION: unlocks in 10 seconds
+  const birthday = new Date().getTime() + 10000;
 
-    // Floating hearts/roses effect
-    const fxLayer = document.getElementById("fxLayer");
+  const countdownEl = document.getElementById("countdown");
+  const mainContent = document.getElementById("mainContent");
+  const birthdayFlash = document.getElementById("birthdayFlash");
+  let unlocked = false;
 
-    function burstFX(opts = {}){
-      const count = opts.count ?? 18;
-      const items = opts.items ?? ["❤️","💖","💘","🌹"];
-      const width = window.innerWidth;
+  function launchConfetti(){
+    const items = ["❤️","🎉","🎂","✨","💖"];
+    for(let i = 0; i < 40; i++){
+      const el = document.createElement("div");
+      el.className = "fx";
+      el.textContent = items[Math.floor(Math.random() * items.length)];
+      el.style.left = Math.random() * window.innerWidth + "px";
+      el.style.setProperty("--rise", (280 + Math.random() * 380) + "px");
+      el.style.setProperty("--drift", (Math.random() * 220 - 110) + "px");
+      el.style.setProperty("--rot", (Math.random() * 180 - 90) + "deg");
+      el.style.setProperty("--dur", (1200 + Math.random() * 1200) + "ms");
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 2600);
+    }
+  }
 
-      for (let i = 0; i < count; i++){
-        const el = document.createElement("div");
-        el.className = "fx";
-        el.textContent = items[Math.floor(Math.random() * items.length)];
+  function unlockBirthday(){
+    if (unlocked) return;
+    unlocked = true;
 
-        const x = Math.random() * width;
-        const rise = 260 + Math.random() * 380;
-        const drift = (Math.random() * 160 - 80) + "px";
-        const rot = (Math.random() * 120 - 60) + "deg";
-        const dur = (900 + Math.random() * 900) + "ms";
-        const delay = (Math.random() * 180) + "ms";
+    countdownEl.innerHTML = "🎉 IT’S YOUR BIRTHDAY 🎉";
+    mainContent.classList.remove("hidden");
+    birthdayFlash.classList.add("show");
+    launchConfetti();
+  }
 
-        el.style.left = x + "px";
-        el.style.setProperty("--rise", rise + "px");
-        el.style.setProperty("--drift", drift);
-        el.style.setProperty("--rot", rot);
-        el.style.setProperty("--dur", dur);
-        el.style.animationDelay = delay;
+  function updateCountdown(){
+    const now = new Date().getTime();
+    const distance = birthday - now;
 
-        fxLayer.appendChild(el);
-        setTimeout(() => el.remove(), 2200);
-      }
+    if(distance <= 0){
+      unlockBirthday();
+      return;
     }
 
-    // INTRO overlay logic
-    const intro = document.getElementById("intro");
-    const mainWrap = document.getElementById("mainWrap");
-    const shootIntroBtn = document.getElementById("shootIntroBtn");
-    const skipBtn = document.getElementById("skipBtn");
-    const arrowIntro = document.getElementById("arrowIntro");
-    const cloud = document.getElementById("cloud");
-    const sparkle = document.getElementById("sparkle");
-    let introShot = false;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    function showMain(){
-      mainWrap.style.visibility = "visible";
-      burstFX({ count: 24, items: ["❤️","💖","💘","🌹"] });
-      intro.classList.add("fadeOut");
-      setTimeout(() => { intro.style.display = "none"; }, 540);
-    }
+    countdownEl.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+  }
 
-    function shootIntro(){
-      if (introShot) return;
-      introShot = true;
-      shootIntroBtn.disabled = true;
-      shootIntroBtn.style.opacity = ".75";
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
 
-      const stage = document.getElementById("stage").getBoundingClientRect();
-      const a = arrowIntro.getBoundingClientRect();
-      const c = cloud.getBoundingClientRect();
-
-      const cloudCenterX = (c.left + c.right)/2 - stage.left;
-      const arrowHalf = a.width/2;
-      const dest = Math.max(18, Math.min(stage.width - a.width - 18, cloudCenterX - arrowHalf));
-
-      arrowIntro.style.left = dest + "px";
-
-      setTimeout(() => {
-        sparkle.style.opacity = "1";
-        cloud.style.transform = "translateY(-50%) scale(1.06)";
-      }, 780);
-
-      setTimeout(() => showMain(), 1150);
-    }
-
-    shootIntroBtn.addEventListener("click", shootIntro);
-    skipBtn.addEventListener("click", showMain);
-
-    // MAIN cupid mini-game logic
-    const gameArea = document.getElementById("gameArea");
-    const arrow = document.getElementById("arrow");
-    const heart = document.getElementById("heart");
-    const shootBtn = document.getElementById("shootBtn");
-    const resetBtn = document.getElementById("resetBtn");
-    const lockedMessage = document.getElementById("lockedMessage");
-    const musicSection = document.getElementById("musicSection");
-
-    let hit = false;
-    let animating = false;
-
-    function resetGame(){
-      hit = false;
-      animating = false;
-      lockedMessage.style.display = "none";
-      heart.classList.remove("pulse");
-      arrow.style.left = "18px";
-      arrow.style.transition = "none";
-      shootBtn.disabled = false;
-      shootBtn.style.opacity = "1";
-      requestAnimationFrame(() => { arrow.style.transition = "left 700ms ease"; });
-    }
-
-    function shoot(){
-      if (hit || animating) return;
-      animating = true;
-      shootBtn.disabled = true;
-      shootBtn.style.opacity = ".75";
-
-      const g = gameArea.getBoundingClientRect();
-      const a = arrow.getBoundingClientRect();
-      const h = heart.getBoundingClientRect();
-
-      const heartCenterX = (h.left + h.right)/2 - g.left;
-      const arrowHalf = a.width / 2;
-      const dest = Math.max(18, Math.min(g.width - a.width - 18, heartCenterX - arrowHalf));
-
-      arrow.style.left = dest + "px";
-
-      setTimeout(() => {
-        hit = true;
-        animating = false;
-        heart.classList.add("pulse");
-        lockedMessage.style.display = "block";
-
-        burstFX({ count: 28, items: ["💘","💖","❤️","🌹"] });
-
-        // Reveal Spotify only
-        if (musicSection) {
-          musicSection.style.display = "block";
-          musicSection.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-
-      }, 720);
-    }
-
-    shootBtn.addEventListener("click", shoot);
-    resetBtn.addEventListener("click", resetGame);
-
-    resetGame();
-  </script>
 </body>
 </html>
