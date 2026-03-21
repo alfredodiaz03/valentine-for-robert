@@ -301,6 +301,25 @@
       border:2px solid var(--green);
     }
 
+    .startBtn{
+      margin:10px 0 15px;
+      padding:12px 18px;
+      border-radius:10px;
+      border:none;
+      background:var(--green);
+      color:#06281a;
+      font-weight:800;
+      cursor:pointer;
+      font-family:"Press Start 2P", cursive;
+      font-size:11px;
+      line-height:1.5;
+      box-shadow:0 8px 18px rgba(0,0,0,.25);
+    }
+
+    .startBtn:hover{
+      filter:brightness(1.05);
+    }
+
     .flash{
       position:fixed;
       inset:0;
@@ -445,10 +464,14 @@
         <section class="section">
           <h2>🎶 Battle Theme</h2>
           <p style="margin:0 0 12px; line-height:1.7;">
-            Press play when you’re ready ⚡
+            Press start to play the birthday theme ⚡
           </p>
+
+          <button id="startMusicBtn" class="startBtn">▶ PRESS START</button>
+
           <div class="spotifyWrap">
             <iframe
+              id="spotifyPlayer"
               data-testid="embed-iframe"
               style="border-radius:12px"
               src="https://open.spotify.com/embed/track/3mNH9BXFcNElEFbgKqmq1J?utm_source=generator&theme=0"
@@ -509,9 +532,14 @@
   // TEST VERSION: unlocks in 10 seconds
   const birthday = new Date().getTime() + 10000;
 
+  // FINAL VERSION:
+  // const birthday = new Date("2026-04-01T00:00:00").getTime();
+
   const countdownEl = document.getElementById("countdown");
   const mainContent = document.getElementById("mainContent");
   const birthdayFlash = document.getElementById("birthdayFlash");
+  const startBtn = document.getElementById("startMusicBtn");
+  const spotifyPlayer = document.getElementById("spotifyPlayer");
   let unlocked = false;
 
   function launchConfetti(){
@@ -555,6 +583,16 @@
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     countdownEl.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+  }
+
+  if(startBtn){
+    startBtn.addEventListener("click", () => {
+      if (!spotifyPlayer.src.includes("autoplay=1")) {
+        spotifyPlayer.src += "&autoplay=1";
+      }
+      startBtn.innerText = "PLAYING...";
+      startBtn.style.background = "#16a34a";
+    });
   }
 
   setInterval(updateCountdown, 1000);
