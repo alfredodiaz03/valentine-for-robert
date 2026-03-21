@@ -1,332 +1,368 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Trainer Robert - Level 32</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trainer Robert // Level 32</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<style>
-  :root{
-    --bg1:#0f172a;
-    --bg2:#1e293b;
-    --panel:#111827;
-    --panel2:#1f2937;
-    --line:#334155;
-    --text:#e5e7eb;
-    --muted:#cbd5e1;
-    --yellow:#facc15;
-    --red:#ef4444;
-    --blue:#38bdf8;
-    --green:#22c55e;
-    --shadow:0 18px 50px rgba(0,0,0,.45);
-  }
+  <style>
+    :root{
+      --bg1:#0b1220;
+      --bg2:#17223b;
+      --panel:#111827;
+      --panel2:#1f2937;
+      --line:#334155;
+      --text:#e5e7eb;
+      --muted:#cbd5e1;
+      --yellow:#facc15;
+      --red:#ef4444;
+      --blue:#38bdf8;
+      --green:#22c55e;
+      --white:#ffffff;
+      --shadow:0 20px 50px rgba(0,0,0,.45);
+    }
 
-  *{box-sizing:border-box}
+    *{box-sizing:border-box}
 
-  body{
-    margin:0;
-    font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    color:var(--text);
-    min-height:100vh;
-    background:
-      radial-gradient(circle at top left, #1d4ed8 0%, transparent 28%),
-      radial-gradient(circle at top right, #dc2626 0%, transparent 24%),
-      linear-gradient(135deg, var(--bg1), var(--bg2));
-    overflow-x:hidden;
-  }
+    body{
+      margin:0;
+      font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      min-height:100vh;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,.22), transparent 28%),
+        radial-gradient(circle at top right, rgba(239,68,68,.20), transparent 24%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
 
-  .wrap{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:24px;
-  }
+    .scanlines::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,.02) 0px,
+          rgba(255,255,255,.02) 1px,
+          transparent 2px,
+          transparent 4px
+        );
+      z-index:1;
+    }
 
-  .screen{
-    width:min(980px,100%);
-    background:linear-gradient(180deg, #0b1220, #111827);
-    border:4px solid var(--yellow);
-    border-radius:24px;
-    box-shadow:var(--shadow);
-    overflow:hidden;
-  }
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      position:relative;
+      z-index:2;
+    }
 
-  .topbar{
-    background:linear-gradient(90deg, #dc2626, #f59e0b);
-    color:white;
-    padding:14px 18px;
-    border-bottom:4px solid var(--yellow);
-    font-family:"Press Start 2P", cursive;
-    font-size:12px;
-    letter-spacing:.5px;
-    text-align:center;
-  }
+    .screen{
+      width:min(980px,100%);
+      background:linear-gradient(180deg, #0f172a, #111827);
+      border:4px solid var(--yellow);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
 
-  .inner{
-    padding:22px;
-  }
+    .topbar{
+      background:linear-gradient(90deg, #dc2626, #f59e0b 55%, #facc15);
+      color:#111827;
+      padding:14px 18px;
+      border-bottom:4px solid var(--yellow);
+      font-family:"Press Start 2P", cursive;
+      font-size:11px;
+      line-height:1.8;
+      text-align:center;
+      letter-spacing:.5px;
+    }
 
-  h1{
-    margin:0 0 10px;
-    text-align:center;
-    font-family:"Press Start 2P", cursive;
-    font-size:clamp(20px, 3vw, 30px);
-    line-height:1.5;
-    color:var(--yellow);
-    text-shadow:2px 2px 0 rgba(0,0,0,.35);
-  }
+    .inner{
+      padding:22px;
+    }
 
-  .subtitle{
-    text-align:center;
-    color:var(--muted);
-    font-size:17px;
-    line-height:1.7;
-    margin:0 0 18px;
-  }
+    h1{
+      margin:0 0 10px;
+      text-align:center;
+      font-family:"Press Start 2P", cursive;
+      font-size:clamp(18px, 3vw, 30px);
+      line-height:1.7;
+      color:var(--yellow);
+      text-shadow:2px 2px 0 rgba(0,0,0,.35);
+    }
 
-  .countBox{
-    background:linear-gradient(180deg, #182236, #101827);
-    border:2px solid var(--blue);
-    border-radius:18px;
-    padding:20px;
-    margin:18px 0 20px;
-    box-shadow:inset 0 0 0 2px rgba(255,255,255,.04);
-    text-align:center;
-  }
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.8;
+      margin:0 0 18px;
+      font-weight:600;
+    }
 
-  .countLabel{
-    font-family:"Press Start 2P", cursive;
-    color:var(--blue);
-    font-size:12px;
-    line-height:1.8;
-  }
+    .countBox{
+      background:linear-gradient(180deg, #182236, #101827);
+      border:2px solid var(--blue);
+      border-radius:18px;
+      padding:20px;
+      margin:18px 0 20px;
+      box-shadow:inset 0 0 0 2px rgba(255,255,255,.04);
+      text-align:center;
+    }
 
-  .countdown{
-    font-size:clamp(28px,6vw,46px);
-    font-weight:800;
-    color:white;
-    margin:16px 0 8px;
-  }
+    .countLabel{
+      font-family:"Press Start 2P", cursive;
+      color:var(--blue);
+      font-size:11px;
+      line-height:1.8;
+    }
 
-  .mini{
-    color:var(--muted);
-    font-size:14px;
-  }
+    .countdown{
+      font-size:clamp(26px,6vw,44px);
+      font-weight:800;
+      color:var(--white);
+      margin:16px 0 8px;
+    }
 
-  .trainerCard{
-    display:grid;
-    grid-template-columns: 220px 1fr;
-    gap:18px;
-    background:linear-gradient(180deg, #1a2438, #111827);
-    border:2px solid var(--yellow);
-    border-radius:20px;
-    padding:18px;
-    margin:18px 0;
-  }
+    .mini{
+      color:var(--muted);
+      font-size:14px;
+    }
 
-  @media (max-width:720px){
     .trainerCard{
-      grid-template-columns:1fr;
+      display:grid;
+      grid-template-columns:220px 1fr;
+      gap:18px;
+      background:linear-gradient(180deg, #1a2438, #111827);
+      border:2px solid var(--yellow);
+      border-radius:20px;
+      padding:18px;
+      margin:18px 0;
     }
-  }
 
-  .avatarPanel{
-    background:linear-gradient(180deg, #0f172a, #172033);
-    border:2px solid var(--line);
-    border-radius:16px;
-    padding:14px;
-    text-align:center;
-  }
+    @media (max-width:720px){
+      .trainerCard{
+        grid-template-columns:1fr;
+      }
+    }
 
-  .avatarBadge{
-    font-family:"Press Start 2P", cursive;
-    font-size:11px;
-    color:var(--yellow);
-    margin-bottom:12px;
-    line-height:1.6;
-  }
+    .avatarPanel{
+      background:linear-gradient(180deg, #0f172a, #172033);
+      border:2px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      text-align:center;
+    }
 
-  .avatarCircle{
-    width:120px;
-    height:120px;
-    margin:0 auto 14px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:radial-gradient(circle, #facc15 0%, #f59e0b 55%, #dc2626 100%);
-    color:#111827;
-    font-family:"Press Start 2P", cursive;
-    font-size:26px;
-    border:4px solid white;
-    box-shadow:0 8px 20px rgba(0,0,0,.35);
-  }
+    .avatarBadge{
+      font-family:"Press Start 2P", cursive;
+      font-size:10px;
+      color:var(--yellow);
+      margin-bottom:12px;
+      line-height:1.7;
+    }
 
-  .smallStat{
-    background:#111827;
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:10px;
-    margin-top:8px;
-    font-size:14px;
-  }
+    .avatarCircle{
+      width:126px;
+      height:126px;
+      margin:0 auto 14px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(circle at center, var(--white) 0 36%, transparent 37%),
+        linear-gradient(180deg, #ef4444 0 48%, #111827 48% 52%, #ffffff 52% 100%);
+      color:#111827;
+      font-family:"Press Start 2P", cursive;
+      font-size:22px;
+      border:4px solid var(--white);
+      box-shadow:0 8px 20px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
 
-  .trainerInfo{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:12px;
-  }
+    .avatarCircle span{
+      position:relative;
+      z-index:2;
+      background:rgba(255,255,255,.8);
+      padding:4px 6px;
+      border-radius:8px;
+    }
 
-  @media (max-width:640px){
+    .smallStat{
+      background:#111827;
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:10px;
+      margin-top:8px;
+      font-size:14px;
+      color:var(--muted);
+    }
+
     .trainerInfo{
-      grid-template-columns:1fr;
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
     }
-  }
 
-  .infoBox{
-    background:#0f172a;
-    border:1px solid var(--line);
-    border-radius:14px;
-    padding:14px;
-  }
-
-  .infoLabel{
-    font-family:"Press Start 2P", cursive;
-    font-size:10px;
-    color:var(--blue);
-    margin-bottom:10px;
-    line-height:1.6;
-  }
-
-  .infoValue{
-    font-size:16px;
-    font-weight:700;
-    color:white;
-  }
-
-  .hidden{
-    display:none;
-  }
-
-  .section{
-    background:linear-gradient(180deg, #172033, #111827);
-    border:1px solid var(--line);
-    border-left:6px solid var(--yellow);
-    border-radius:18px;
-    padding:18px;
-    margin:16px 0;
-  }
-
-  .section h2{
-    margin:0 0 12px;
-    font-size:18px;
-    color:white;
-  }
-
-  .section p{
-    line-height:1.75;
-    color:var(--text);
-    margin:0 0 12px;
-  }
-
-  ul{
-    margin:8px 0 0 18px;
-    padding:0;
-    line-height:1.8;
-  }
-
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:12px;
-  }
-
-  @media (max-width:700px){
-    .grid{ grid-template-columns:1fr; }
-  }
-
-  .photo{
-    width:100%;
-    aspect-ratio:4/3;
-    object-fit:cover;
-    border-radius:16px;
-    border:2px solid var(--yellow);
-    box-shadow:0 12px 28px rgba(0,0,0,.28);
-    background:#0f172a;
-  }
-
-  .spotifyWrap{
-    border-radius:16px;
-    overflow:hidden;
-    box-shadow:0 12px 30px rgba(0,0,0,.28);
-    border:2px solid var(--green);
-  }
-
-  .flash{
-    position:fixed;
-    inset:0;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:rgba(15,23,42,.75);
-    backdrop-filter:blur(6px);
-    z-index:9999;
-    padding:20px;
-    text-align:center;
-  }
-
-  .flash.show{
-    display:flex;
-    animation:flashFade 2.6s ease forwards;
-  }
-
-  .flashText{
-    font-family:"Press Start 2P", cursive;
-    color:var(--yellow);
-    font-size:clamp(24px,5vw,54px);
-    line-height:1.8;
-    text-shadow:0 6px 18px rgba(0,0,0,.45);
-  }
-
-  @keyframes flashFade{
-    0%{opacity:0}
-    15%{opacity:1}
-    75%{opacity:1}
-    100%{opacity:0}
-  }
-
-  .fx{
-    position:fixed;
-    bottom:-30px;
-    font-size:24px;
-    pointer-events:none;
-    animation:floatUp var(--dur) ease-out forwards;
-    transform:translateX(-50%);
-    z-index:10000;
-  }
-
-  @keyframes floatUp{
-    0%{opacity:0; transform:translateX(-50%) translateY(0) rotate(0deg);}
-    12%{opacity:1;}
-    100%{
-      opacity:0;
-      transform:translateX(calc(-50% + var(--drift))) translateY(calc(-1 * var(--rise))) rotate(var(--rot));
+    @media (max-width:640px){
+      .trainerInfo{
+        grid-template-columns:1fr;
+      }
     }
-  }
 
-  .footer{
-    text-align:center;
-    font-size:13px;
-    color:var(--muted);
-    margin-top:22px;
-  }
-</style>
+    .infoBox{
+      background:#0f172a;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px;
+    }
+
+    .infoLabel{
+      font-family:"Press Start 2P", cursive;
+      font-size:9px;
+      color:var(--blue);
+      margin-bottom:10px;
+      line-height:1.7;
+    }
+
+    .infoValue{
+      font-size:16px;
+      font-weight:700;
+      color:var(--white);
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    .section{
+      background:linear-gradient(180deg, #172033, #111827);
+      border:1px solid var(--line);
+      border-left:6px solid var(--yellow);
+      border-radius:18px;
+      padding:18px;
+      margin:16px 0;
+    }
+
+    .section h2{
+      margin:0 0 12px;
+      font-size:19px;
+      color:var(--white);
+    }
+
+    .section p{
+      line-height:1.75;
+      color:var(--text);
+      margin:0 0 12px;
+    }
+
+    ul{
+      margin:8px 0 0 18px;
+      padding:0;
+      line-height:1.8;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+    }
+
+    @media (max-width:700px){
+      .grid{ grid-template-columns:1fr; }
+    }
+
+    .photo{
+      width:100%;
+      aspect-ratio:4/3;
+      object-fit:cover;
+      border-radius:16px;
+      border:2px solid var(--yellow);
+      box-shadow:0 12px 28px rgba(0,0,0,.28);
+      background:#0f172a;
+    }
+
+    .spotifyWrap{
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 12px 30px rgba(0,0,0,.28);
+      border:2px solid var(--green);
+    }
+
+    .flash{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background:rgba(15,23,42,.75);
+      backdrop-filter:blur(6px);
+      z-index:9999;
+      padding:20px;
+      text-align:center;
+    }
+
+    .flash.show{
+      display:flex;
+      animation:flashFade 2.6s ease forwards;
+    }
+
+    .flashText{
+      font-family:"Press Start 2P", cursive;
+      color:var(--yellow);
+      font-size:clamp(24px,5vw,54px);
+      line-height:1.8;
+      text-shadow:0 6px 18px rgba(0,0,0,.45);
+    }
+
+    @keyframes flashFade{
+      0%{opacity:0}
+      15%{opacity:1}
+      75%{opacity:1}
+      100%{opacity:0}
+    }
+
+    .fx{
+      position:fixed;
+      bottom:-30px;
+      font-size:24px;
+      pointer-events:none;
+      animation:floatUp var(--dur) ease-out forwards;
+      transform:translateX(-50%);
+      z-index:10000;
+    }
+
+    @keyframes floatUp{
+      0%{opacity:0; transform:translateX(-50%) translateY(0) rotate(0deg);}
+      12%{opacity:1;}
+      100%{
+        opacity:0;
+        transform:translateX(calc(-50% + var(--drift))) translateY(calc(-1 * var(--rise))) rotate(var(--rot));
+      }
+    }
+
+    .footer{
+      text-align:center;
+      font-size:13px;
+      color:var(--muted);
+      margin-top:22px;
+    }
+  </style>
 </head>
 
-<body>
+<body class="scanlines">
 
 <div class="flash" id="birthdayFlash">
   <div class="flashText">HAPPY BIRTHDAY<br>TRAINER ROBERT 🎉</div>
@@ -339,14 +375,14 @@
     <div class="inner">
       <h1>LEVEL 32 LOADING...</h1>
       <p class="subtitle">
-        Robert… Level 32 unlocks on April 1st 🎂❤️<br>
-        (1994 → 2026… look at you 🥹)
+        Trainer Card Status: Pending<br>
+        Commence countdown to approved status.
       </p>
 
       <section class="countBox">
         <div class="countLabel">NEXT EVOLUTION UNLOCKS IN</div>
         <div class="countdown" id="countdown">Loading...</div>
-        <div class="mini">No skipping ahead, trainer. The reward is worth it ❤️</div>
+        <div class="mini">Authorized access begins at unlock time.</div>
       </section>
 
       <div id="mainContent" class="hidden">
@@ -354,7 +390,7 @@
         <section class="trainerCard">
           <div class="avatarPanel">
             <div class="avatarBadge">TRAINER ROBERT</div>
-            <div class="avatarCircle">32</div>
+            <div class="avatarCircle"><span>32</span></div>
             <div class="smallStat">Type: Favorite Person</div>
             <div class="smallStat">Rarity: Legendary</div>
             <div class="smallStat">Status: Very Loved</div>
@@ -375,7 +411,7 @@
             </div>
             <div class="infoBox">
               <div class="infoLabel">CURRENT STATUS</div>
-              <div class="infoValue">Still amazing</div>
+              <div class="infoValue">Elite Tier</div>
             </div>
             <div class="infoBox">
               <div class="infoLabel">SPECIAL SKILL</div>
@@ -389,7 +425,7 @@
         </section>
 
         <section class="section">
-          <h2>📸 Trainer Memories</h2>
+          <h2>📸 Adventure Log</h2>
           <div class="grid">
             <img class="photo" src="images/us1.jpg" alt="Us photo 1">
             <img class="photo" src="images/us2.jpg" alt="Us photo 2">
@@ -397,7 +433,7 @@
         </section>
 
         <section class="section">
-          <h2>🏆 Why I’m Proud of You</h2>
+          <h2>🏆 Trainer Achievements</h2>
           <p>
             I am so proud of the man you are and everything you’ve become. The way you show up, the way you handle life, and the way you keep moving forward says so much about your heart and your strength.
           </p>
@@ -407,25 +443,26 @@
         </section>
 
         <section class="section">
-          <h2>🎶 Birthday Soundtrack</h2>
+          <h2>🎶 Battle Theme</h2>
           <p style="margin:0 0 12px; line-height:1.7;">
-            Press play when you’re ready ❤️
+            Press play when you’re ready ⚡
           </p>
           <div class="spotifyWrap">
             <iframe
+              data-testid="embed-iframe"
               style="border-radius:12px"
-              src="https://open.spotify.com/embed/track/3XVBdLihbNbxUwZosxcGuJ"
+              src="https://open.spotify.com/embed/track/3mNH9BXFcNElEFbgKqmq1J?utm_source=generator&theme=0"
               width="100%"
               height="152"
               frameborder="0"
-              allow="encrypted-media"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy">
             </iframe>
           </div>
         </section>
 
         <section class="section">
-          <h2>🙏 Why I’m Thankful for You</h2>
+          <h2>🙏 Support Team</h2>
           <ul>
             <li>Thank you for loving me the way you do.</li>
             <li>Thank you for making me feel safe and supported.</li>
@@ -435,7 +472,7 @@
         </section>
 
         <section class="section">
-          <h2>❤️ Why I Love You</h2>
+          <h2>❤️ Favorite Person</h2>
           <p>
             I love you because you make life feel lighter, warmer, and happier. You are my favorite person to laugh with, dream with, and just exist with.
           </p>
@@ -445,7 +482,7 @@
         </section>
 
         <section class="section">
-          <h2>💌 Final Birthday Message</h2>
+          <h2>🎁 Birthday Reward Unlocked</h2>
           <p>
             Happy 32nd birthday, my love.
           </p>
@@ -469,10 +506,7 @@
   document.getElementById("dateStamp").textContent =
     new Date().toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
 
-  // TEST VERSION:
-  // const birthday = new Date().getTime() + 10000;
-
-  // FINAL VERSION:
+  // TEST VERSION: unlocks in 10 seconds
   const birthday = new Date().getTime() + 10000;
 
   const countdownEl = document.getElementById("countdown");
