@@ -3,31 +3,36 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Robert Level 32 🎂❤️</title>
+<title>Trainer Robert - Level 32</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg1:#ffe3ec;
-    --bg2:#ffc2d1;
-    --card:#ffffff;
-    --accent:#ff4d6d;
-    --accent2:#ff8fab;
-    --text:#2b2b2b;
-    --shadow:0 20px 50px rgba(0,0,0,.15);
+    --bg1:#0f172a;
+    --bg2:#1e293b;
+    --panel:#111827;
+    --panel2:#1f2937;
+    --line:#334155;
+    --text:#e5e7eb;
+    --muted:#cbd5e1;
+    --yellow:#facc15;
+    --red:#ef4444;
+    --blue:#38bdf8;
+    --green:#22c55e;
+    --shadow:0 18px 50px rgba(0,0,0,.45);
   }
 
   *{box-sizing:border-box}
 
   body{
     margin:0;
-    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     color:var(--text);
     min-height:100vh;
     background:
-      radial-gradient(1200px 800px at 30% 20%, var(--bg1), transparent 55%),
-      radial-gradient(1000px 700px at 80% 30%, #ffd7e2, transparent 55%),
+      radial-gradient(circle at top left, #1d4ed8 0%, transparent 28%),
+      radial-gradient(circle at top right, #dc2626 0%, transparent 24%),
       linear-gradient(135deg, var(--bg1), var(--bg2));
     overflow-x:hidden;
   }
@@ -40,62 +45,197 @@
     padding:24px;
   }
 
-  .card{
-    width:min(860px,100%);
-    background:rgba(255,255,255,.94);
-    backdrop-filter:blur(10px);
-    border-radius:28px;
+  .screen{
+    width:min(980px,100%);
+    background:linear-gradient(180deg, #0b1220, #111827);
+    border:4px solid var(--yellow);
+    border-radius:24px;
     box-shadow:var(--shadow);
-    padding:24px;
+    overflow:hidden;
+  }
+
+  .topbar{
+    background:linear-gradient(90deg, #dc2626, #f59e0b);
+    color:white;
+    padding:14px 18px;
+    border-bottom:4px solid var(--yellow);
+    font-family:"Press Start 2P", cursive;
+    font-size:12px;
+    letter-spacing:.5px;
+    text-align:center;
+  }
+
+  .inner{
+    padding:22px;
   }
 
   h1{
     margin:0 0 10px;
-    font-family:Pacifico,cursive;
     text-align:center;
-    color:#b3003c;
-    font-size:clamp(34px,5vw,58px);
+    font-family:"Press Start 2P", cursive;
+    font-size:clamp(20px, 3vw, 30px);
+    line-height:1.5;
+    color:var(--yellow);
+    text-shadow:2px 2px 0 rgba(0,0,0,.35);
   }
 
   .subtitle{
     text-align:center;
-    font-size:16px;
-    line-height:1.6;
-    margin:0 0 20px;
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.7;
+    margin:0 0 18px;
   }
 
-  .timerBox{
-    background:#fff5f7;
-    border:1px solid rgba(0,0,0,.06);
-    border-radius:20px;
+  .countBox{
+    background:linear-gradient(180deg, #182236, #101827);
+    border:2px solid var(--blue);
+    border-radius:18px;
     padding:20px;
+    margin:18px 0 20px;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.04);
     text-align:center;
-    margin:18px 0;
+  }
+
+  .countLabel{
+    font-family:"Press Start 2P", cursive;
+    color:var(--blue);
+    font-size:12px;
+    line-height:1.8;
   }
 
   .countdown{
-    font-size:clamp(28px,6vw,44px);
+    font-size:clamp(28px,6vw,46px);
     font-weight:800;
-    margin:12px 0 6px;
-    color:#b3003c;
+    color:white;
+    margin:16px 0 8px;
   }
 
   .mini{
+    color:var(--muted);
     font-size:14px;
-    opacity:.8;
+  }
+
+  .trainerCard{
+    display:grid;
+    grid-template-columns: 220px 1fr;
+    gap:18px;
+    background:linear-gradient(180deg, #1a2438, #111827);
+    border:2px solid var(--yellow);
+    border-radius:20px;
+    padding:18px;
+    margin:18px 0;
+  }
+
+  @media (max-width:720px){
+    .trainerCard{
+      grid-template-columns:1fr;
+    }
+  }
+
+  .avatarPanel{
+    background:linear-gradient(180deg, #0f172a, #172033);
+    border:2px solid var(--line);
+    border-radius:16px;
+    padding:14px;
+    text-align:center;
+  }
+
+  .avatarBadge{
+    font-family:"Press Start 2P", cursive;
+    font-size:11px;
+    color:var(--yellow);
+    margin-bottom:12px;
+    line-height:1.6;
+  }
+
+  .avatarCircle{
+    width:120px;
+    height:120px;
+    margin:0 auto 14px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:radial-gradient(circle, #facc15 0%, #f59e0b 55%, #dc2626 100%);
+    color:#111827;
+    font-family:"Press Start 2P", cursive;
+    font-size:26px;
+    border:4px solid white;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+  }
+
+  .smallStat{
+    background:#111827;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:10px;
+    margin-top:8px;
+    font-size:14px;
+  }
+
+  .trainerInfo{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+
+  @media (max-width:640px){
+    .trainerInfo{
+      grid-template-columns:1fr;
+    }
+  }
+
+  .infoBox{
+    background:#0f172a;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px;
+  }
+
+  .infoLabel{
+    font-family:"Press Start 2P", cursive;
+    font-size:10px;
+    color:var(--blue);
+    margin-bottom:10px;
+    line-height:1.6;
+  }
+
+  .infoValue{
+    font-size:16px;
+    font-weight:700;
+    color:white;
+  }
+
+  .hidden{
+    display:none;
   }
 
   .section{
-    background:#fff7f9;
-    border:1px solid rgba(0,0,0,.06);
-    border-radius:20px;
+    background:linear-gradient(180deg, #172033, #111827);
+    border:1px solid var(--line);
+    border-left:6px solid var(--yellow);
+    border-radius:18px;
     padding:18px;
     margin:16px 0;
   }
 
   .section h2{
-    margin:0 0 10px;
-    font-size:20px;
+    margin:0 0 12px;
+    font-size:18px;
+    color:white;
+  }
+
+  .section p{
+    line-height:1.75;
+    color:var(--text);
+    margin:0 0 12px;
+  }
+
+  ul{
+    margin:8px 0 0 18px;
+    padding:0;
+    line-height:1.8;
   }
 
   .grid{
@@ -104,7 +244,7 @@
     gap:12px;
   }
 
-  @media (max-width:640px){
+  @media (max-width:700px){
     .grid{ grid-template-columns:1fr; }
   }
 
@@ -113,43 +253,42 @@
     aspect-ratio:4/3;
     object-fit:cover;
     border-radius:16px;
-    border:1px solid rgba(0,0,0,.08);
-    box-shadow:0 14px 28px rgba(0,0,0,.10);
+    border:2px solid var(--yellow);
+    box-shadow:0 12px 28px rgba(0,0,0,.28);
+    background:#0f172a;
   }
 
-  ul{
-    margin:8px 0 0 18px;
-    padding:0;
-    line-height:1.7;
+  .spotifyWrap{
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.28);
+    border:2px solid var(--green);
   }
 
-  .hidden{
-    display:none;
-  }
-
-  .birthdayFlash{
+  .flash{
     position:fixed;
     inset:0;
     display:none;
     align-items:center;
     justify-content:center;
-    background:rgba(255,255,255,.25);
-    backdrop-filter:blur(4px);
+    background:rgba(15,23,42,.75);
+    backdrop-filter:blur(6px);
     z-index:9999;
+    padding:20px;
     text-align:center;
-    padding:24px;
   }
 
-  .birthdayFlash.show{
+  .flash.show{
     display:flex;
-    animation:flashFade 2.4s ease forwards;
+    animation:flashFade 2.6s ease forwards;
   }
 
-  .birthdayFlashText{
-    font-family:Pacifico,cursive;
-    color:#b3003c;
-    font-size:clamp(34px,7vw,72px);
-    text-shadow:0 8px 18px rgba(0,0,0,.12);
+  .flashText{
+    font-family:"Press Start 2P", cursive;
+    color:var(--yellow);
+    font-size:clamp(24px,5vw,54px);
+    line-height:1.8;
+    text-shadow:0 6px 18px rgba(0,0,0,.45);
   }
 
   @keyframes flashFade{
@@ -171,118 +310,158 @@
 
   @keyframes floatUp{
     0%{opacity:0; transform:translateX(-50%) translateY(0) rotate(0deg);}
-    10%{opacity:1;}
+    12%{opacity:1;}
     100%{
       opacity:0;
       transform:translateX(calc(-50% + var(--drift))) translateY(calc(-1 * var(--rise))) rotate(var(--rot));
     }
   }
 
-  .spotifyWrap{
-    border-radius:16px;
-    overflow:hidden;
-    box-shadow:0 12px 30px rgba(0,0,0,.15);
-  }
-
   .footer{
     text-align:center;
     font-size:13px;
-    opacity:.8;
-    margin-top:18px;
+    color:var(--muted);
+    margin-top:22px;
   }
 </style>
 </head>
 
 <body>
 
-<div class="birthdayFlash" id="birthdayFlash">
-  <div class="birthdayFlashText">HAPPY BIRTHDAY ROBERT 🎉</div>
+<div class="flash" id="birthdayFlash">
+  <div class="flashText">HAPPY BIRTHDAY<br>TRAINER ROBERT 🎉</div>
 </div>
 
 <div class="wrap">
-  <main class="card">
-    <h1>Level 32 Loading… 🎂❤️</h1>
-    <p class="subtitle">
-      Robert… Level 32 unlocks on April 1st 🎂❤️<br>
-      (1994 → 2026… look at you 🥹)
-    </p>
+  <main class="screen">
+    <div class="topbar">TRAINER FILE // SPECIAL BIRTHDAY UNLOCK</div>
 
-    <section class="timerBox">
-      <div style="font-weight:800;">Birthday Unlock Countdown</div>
-      <div class="countdown" id="countdown">Loading...</div>
-      <div class="mini">Don’t skip ahead… it’s worth the wait ❤️</div>
-    </section>
+    <div class="inner">
+      <h1>LEVEL 32 LOADING...</h1>
+      <p class="subtitle">
+        Robert… Level 32 unlocks on April 1st 🎂❤️<br>
+        (1994 → 2026… look at you 🥹)
+      </p>
 
-    <div id="mainContent" class="hidden">
-      <section class="section">
-        <h2>📸 Us</h2>
-        <div class="grid">
-          <img class="photo" src="images/us1.jpg" alt="Us photo 1">
-          <img class="photo" src="images/us2.jpg" alt="Us photo 2">
-        </div>
+      <section class="countBox">
+        <div class="countLabel">NEXT EVOLUTION UNLOCKS IN</div>
+        <div class="countdown" id="countdown">Loading...</div>
+        <div class="mini">No skipping ahead, trainer. The reward is worth it ❤️</div>
       </section>
 
-      <section class="section">
-        <h2>🏆 Why I’m Proud of You</h2>
-        <p>
-          I am so proud of the man you are. The way you show up, the way you keep going, the way you handle life, and the way you care for the people around you always amazes me.
-        </p>
-        <p>
-          You inspire me more than you probably realize, and I hope this year reminds you just how capable, strong, and special you are.
-        </p>
-      </section>
+      <div id="mainContent" class="hidden">
 
-      <section class="section">
-        <h2>🎶 Your Song</h2>
-        <p style="margin:0 0 12px; line-height:1.6;">
-          Press play when you’re ready ❤️
-        </p>
-        <div class="spotifyWrap">
-          <iframe
-            style="border-radius:12px"
-            src="https://open.spotify.com/embed/track/3XVBdLihbNbxUwZosxcGuJ"
-            width="100%"
-            height="152"
-            frameborder="0"
-            allow="encrypted-media"
-            loading="lazy">
-          </iframe>
-        </div>
-      </section>
+        <section class="trainerCard">
+          <div class="avatarPanel">
+            <div class="avatarBadge">TRAINER ROBERT</div>
+            <div class="avatarCircle">32</div>
+            <div class="smallStat">Type: Favorite Person</div>
+            <div class="smallStat">Rarity: Legendary</div>
+            <div class="smallStat">Status: Very Loved</div>
+          </div>
 
-      <section class="section">
-        <h2>🙏 Why I’m Thankful for You</h2>
-        <ul>
-          <li>Thank you for loving me the way you do.</li>
-          <li>Thank you for making me feel safe and supported.</li>
-          <li>Thank you for being patient, steady, and kind.</li>
-          <li>Thank you for being someone I can always count on.</li>
-        </ul>
-      </section>
+          <div class="trainerInfo">
+            <div class="infoBox">
+              <div class="infoLabel">TRAINER NAME</div>
+              <div class="infoValue">Robert</div>
+            </div>
+            <div class="infoBox">
+              <div class="infoLabel">LEVEL</div>
+              <div class="infoValue">32 Unlocked</div>
+            </div>
+            <div class="infoBox">
+              <div class="infoLabel">START YEAR</div>
+              <div class="infoValue">1994</div>
+            </div>
+            <div class="infoBox">
+              <div class="infoLabel">CURRENT STATUS</div>
+              <div class="infoValue">Still amazing</div>
+            </div>
+            <div class="infoBox">
+              <div class="infoLabel">SPECIAL SKILL</div>
+              <div class="infoValue">Making my life better</div>
+            </div>
+            <div class="infoBox">
+              <div class="infoLabel">MY FAVORITE THING</div>
+              <div class="infoValue">You</div>
+            </div>
+          </div>
+        </section>
 
-      <section class="section">
-        <h2>❤️ Why I Love You</h2>
-        <p>
-          I love you because you make life feel lighter, warmer, and happier. You are my favorite person to laugh with, to dream with, and to just exist with.
-        </p>
-        <p>
-          You make ordinary days feel special, and I feel lucky that I get to love you through all of your chapters — including Level 32.
-        </p>
-      </section>
+        <section class="section">
+          <h2>📸 Trainer Memories</h2>
+          <div class="grid">
+            <img class="photo" src="images/us1.jpg" alt="Us photo 1">
+            <img class="photo" src="images/us2.jpg" alt="Us photo 2">
+          </div>
+        </section>
 
-      <section class="section">
-        <h2>💌 Final Message</h2>
-        <p>
-          Happy 32nd birthday, my love.<br><br>
-          I am so proud of you.<br>
-          I am so thankful for you.<br>
-          And I love you more than I can explain.<br><br>
-          I’ll always choose you. ❤️
-        </p>
-      </section>
+        <section class="section">
+          <h2>🏆 Why I’m Proud of You</h2>
+          <p>
+            I am so proud of the man you are and everything you’ve become. The way you show up, the way you handle life, and the way you keep moving forward says so much about your heart and your strength.
+          </p>
+          <p>
+            You inspire me more than you probably realize. I hope this year reminds you how capable, special, and deeply admired you are.
+          </p>
+        </section>
+
+        <section class="section">
+          <h2>🎶 Birthday Soundtrack</h2>
+          <p style="margin:0 0 12px; line-height:1.7;">
+            Press play when you’re ready ❤️
+          </p>
+          <div class="spotifyWrap">
+            <iframe
+              style="border-radius:12px"
+              src="https://open.spotify.com/embed/track/3XVBdLihbNbxUwZosxcGuJ"
+              width="100%"
+              height="152"
+              frameborder="0"
+              allow="encrypted-media"
+              loading="lazy">
+            </iframe>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>🙏 Why I’m Thankful for You</h2>
+          <ul>
+            <li>Thank you for loving me the way you do.</li>
+            <li>Thank you for making me feel safe and supported.</li>
+            <li>Thank you for being patient, steady, and kind.</li>
+            <li>Thank you for being someone I can always count on.</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>❤️ Why I Love You</h2>
+          <p>
+            I love you because you make life feel lighter, warmer, and happier. You are my favorite person to laugh with, dream with, and just exist with.
+          </p>
+          <p>
+            You make ordinary days feel special, and I feel lucky that I get to love you through all of your chapters — including Level 32.
+          </p>
+        </section>
+
+        <section class="section">
+          <h2>💌 Final Birthday Message</h2>
+          <p>
+            Happy 32nd birthday, my love.
+          </p>
+          <p>
+            I am so proud of you.<br>
+            I am so thankful for you.<br>
+            And I love you more than I can explain.
+          </p>
+          <p>
+            I’ll always choose you. ❤️
+          </p>
+        </section>
+      </div>
+
+      <div class="footer">Made by me, for you — <span id="dateStamp"></span></div>
     </div>
-
-    <div class="footer">Made by me, for you — <span id="dateStamp"></span></div>
   </main>
 </div>
 
@@ -290,8 +469,11 @@
   document.getElementById("dateStamp").textContent =
     new Date().toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
 
-  // TEST VERSION: unlocks in 10 seconds
-  const birthday = new Date().getTime() + 10000;
+  // TEST VERSION:
+  // const birthday = new Date().getTime() + 10000;
+
+  // FINAL VERSION:
+  const birthday = new Date("2026-04-01T00:00:00").getTime();
 
   const countdownEl = document.getElementById("countdown");
   const mainContent = document.getElementById("mainContent");
@@ -299,18 +481,18 @@
   let unlocked = false;
 
   function launchConfetti(){
-    const items = ["❤️","🎉","🎂","✨","💖"];
-    for(let i = 0; i < 40; i++){
+    const items = ["⭐","🎉","⚡","✨","❤️","🎂"];
+    for(let i = 0; i < 42; i++){
       const el = document.createElement("div");
       el.className = "fx";
       el.textContent = items[Math.floor(Math.random() * items.length)];
       el.style.left = Math.random() * window.innerWidth + "px";
-      el.style.setProperty("--rise", (280 + Math.random() * 380) + "px");
-      el.style.setProperty("--drift", (Math.random() * 220 - 110) + "px");
-      el.style.setProperty("--rot", (Math.random() * 180 - 90) + "deg");
-      el.style.setProperty("--dur", (1200 + Math.random() * 1200) + "ms");
+      el.style.setProperty("--rise", (280 + Math.random() * 420) + "px");
+      el.style.setProperty("--drift", (Math.random() * 260 - 130) + "px");
+      el.style.setProperty("--rot", (Math.random() * 220 - 110) + "deg");
+      el.style.setProperty("--dur", (1300 + Math.random() * 1400) + "ms");
       document.body.appendChild(el);
-      setTimeout(() => el.remove(), 2600);
+      setTimeout(() => el.remove(), 3000);
     }
   }
 
@@ -318,7 +500,7 @@
     if (unlocked) return;
     unlocked = true;
 
-    countdownEl.innerHTML = "🎉 IT’S YOUR BIRTHDAY 🎉";
+    countdownEl.innerHTML = "LEVEL 32 UNLOCKED";
     mainContent.classList.remove("hidden");
     birthdayFlash.classList.add("show");
     launchConfetti();
