@@ -371,6 +371,68 @@
       background:#0f172a;
     }
 
+    .game{
+      position:relative;
+      width:100%;
+      height:160px;
+      background:#0f172a;
+      border:2px solid #334155;
+      border-radius:16px;
+      overflow:hidden;
+      margin:10px 0 14px;
+    }
+
+    .pokeball{
+      position:absolute;
+      left:10px;
+      bottom:10px;
+      font-size:28px;
+      transition:all .6s ease;
+    }
+
+    .pokemonTarget{
+      position:absolute;
+      right:20px;
+      top:20px;
+      font-size:32px;
+    }
+
+    .btnrow{
+      display:flex;
+      gap:10px;
+      margin-bottom:10px;
+      flex-wrap:wrap;
+    }
+
+    .primary,
+    .secondary{
+      padding:10px 14px;
+      border-radius:10px;
+      border:none;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .primary{
+      background:#facc15;
+      color:#111827;
+    }
+
+    .secondary{
+      background:#334155;
+      color:white;
+    }
+
+    .secret{
+      display:none;
+      margin-top:10px;
+      background:#111827;
+      border:1px solid #334155;
+      border-radius:12px;
+      padding:12px;
+      line-height:1.6;
+    }
+
     .flash{
       position:fixed;
       inset:0;
@@ -526,6 +588,36 @@
           </div>
         </section>
 
+        <section class="section">
+          <h2>⚡ Catch That Pokémon</h2>
+          <p style="margin:0 0 10px;">
+            Okay Trainer… catch the Pokémon to unlock your Battle Theme 🎵
+          </p>
+
+          <div class="game" id="gameArea">
+            <div class="pokeball" id="pokeball">⚪</div>
+            <div class="pokemonTarget" id="pokemon">⚡</div>
+          </div>
+
+          <div class="btnrow">
+            <button class="primary" id="throwBtn">Throw Pokéball</button>
+            <button class="secondary" id="resetBtn">Reset</button>
+          </div>
+
+          <div class="secret" id="lockedMessage">
+            You caught it! 🎉<br/>
+            Trainer Level Up Complete.<br/>
+            Battle Theme Unlocked. Press play below.
+          </div>
+        </section>
+
+        <section class="section" id="musicSection" style="display:none;">
+          <h2>🎶 Battle Theme</h2>
+          <p style="margin:0 0 12px; line-height:1.6;">
+            This song always makes me think of you.
+            Press play when you’re ready ⚡
+          </p>
+
           <div style="border-radius:16px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,.15);">
             <iframe
               data-testid="embed-iframe"
@@ -616,6 +708,12 @@
   const countdownEl = document.getElementById("countdown");
   const mainContent = document.getElementById("mainContent");
   const birthdayFlash = document.getElementById("birthdayFlash");
+  const throwBtn = document.getElementById("throwBtn");
+  const resetBtn = document.getElementById("resetBtn");
+  const pokeball = document.getElementById("pokeball");
+  const pokemon = document.getElementById("pokemon");
+  const lockedMessage = document.getElementById("lockedMessage");
+  const musicSection = document.getElementById("musicSection");
 
   let unlocked = false;
 
@@ -660,6 +758,25 @@
 
     countdownEl.textContent = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
   }
+
+  throwBtn.addEventListener("click", () => {
+    pokeball.style.left = "75%";
+    pokeball.style.bottom = "80px";
+
+    setTimeout(() => {
+      pokemon.innerHTML = "✨";
+      lockedMessage.style.display = "block";
+      musicSection.style.display = "block";
+    }, 600);
+  });
+
+  resetBtn.addEventListener("click", () => {
+    pokeball.style.left = "10px";
+    pokeball.style.bottom = "10px";
+    pokemon.innerHTML = "⚡";
+    lockedMessage.style.display = "none";
+    musicSection.style.display = "none";
+  });
 
   setInterval(updateCountdown, 1000);
   updateCountdown();
