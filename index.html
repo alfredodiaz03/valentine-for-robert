@@ -13,12 +13,10 @@
     :root{
       --bg1:#07111f;
       --bg2:#13243f;
-      --panel:#0f172a;
       --line:#334155;
       --text:#e5e7eb;
       --muted:#cbd5e1;
       --yellow:#facc15;
-      --red:#ef4444;
       --blue:#38bdf8;
       --green:#22c55e;
       --purple:#a855f7;
@@ -128,9 +126,7 @@
     }
 
     @media (max-width:780px){
-      .hudRow{
-        grid-template-columns:1fr;
-      }
+      .hudRow{ grid-template-columns:1fr; }
     }
 
     .countBox,
@@ -142,9 +138,7 @@
       box-shadow:inset 0 0 0 2px rgba(255,255,255,.04);
     }
 
-    .sideBox{
-      border-color:var(--purple);
-    }
+    .sideBox{ border-color:var(--purple); }
 
     .countLabel,
     .sideLabel{
@@ -154,9 +148,7 @@
       line-height:1.8;
     }
 
-    .sideLabel{
-      color:#d8b4fe;
-    }
+    .sideLabel{ color:#d8b4fe; }
 
     .countdown{
       font-size:clamp(26px,6vw,44px);
@@ -200,9 +192,7 @@
     }
 
     @media (max-width:760px){
-      .trainerCard{
-        grid-template-columns:1fr;
-      }
+      .trainerCard{ grid-template-columns:1fr; }
     }
 
     .avatarPanel{
@@ -286,9 +276,7 @@
     }
 
     @media (max-width:640px){
-      .trainerInfo{
-        grid-template-columns:1fr;
-      }
+      .trainerInfo{ grid-template-columns:1fr; }
     }
 
     .infoBox{
@@ -328,9 +316,7 @@
       width:92%;
     }
 
-    .hidden{
-      display:none;
-    }
+    .hidden{ display:none; }
 
     .section{
       background:linear-gradient(180deg, #172033, #111827);
@@ -384,12 +370,19 @@
       overflow:hidden;
       box-shadow:0 12px 30px rgba(0,0,0,.28);
       border:2px solid var(--green);
-      display:none;
+      max-height:0;
+      opacity:0;
+      margin-top:0;
+      transition:max-height .5s ease, opacity .35s ease, margin-top .35s ease;
     }
 
-    .thunderSection{
-      text-align:center;
+    .spotifyWrap.show{
+      max-height:220px;
+      opacity:1;
+      margin-top:14px;
     }
+
+    .thunderSection{ text-align:center; }
 
     .thunderBtn{
       margin:10px 0 15px;
@@ -406,8 +399,11 @@
       box-shadow:0 10px 20px rgba(0,0,0,.25);
     }
 
-    .thunderBtn:hover{
-      filter:brightness(1.05);
+    .thunderBtn:hover{ filter:brightness(1.05); }
+
+    .thunderBtn:disabled{
+      opacity:.8;
+      cursor:default;
     }
 
     .thunderStage{
@@ -429,6 +425,7 @@
       top:50%;
       transform:translateY(-50%);
       font-size:42px;
+      z-index:2;
     }
 
     .speakerOrb{
@@ -448,16 +445,18 @@
       font-weight:900;
       border:3px solid #d1fae5;
       box-shadow:0 8px 20px rgba(0,0,0,.28);
+      z-index:2;
     }
 
     .lightningBolt{
       position:absolute;
-      left:62px;
+      left:72px;
       top:50%;
-      transform:translateY(-50%);
+      transform:translateY(-50%) scale(.75);
       font-size:44px;
       opacity:0;
-      filter:drop-shadow(0 0 14px rgba(250,204,21,.7));
+      z-index:3;
+      filter:drop-shadow(0 0 14px rgba(250,204,21,.9));
     }
 
     .lightningBolt.fire{
@@ -466,15 +465,15 @@
 
     @keyframes boltShoot{
       0%{
-        left:62px;
+        left:72px;
         opacity:0;
-        transform:translateY(-50%) scale(.8);
+        transform:translateY(-50%) scale(.75);
       }
-      10%{
+      12%{
         opacity:1;
       }
       100%{
-        left:calc(100% - 88px);
+        left:calc(100% - 108px);
         opacity:1;
         transform:translateY(-50%) scale(1.1);
       }
@@ -759,6 +758,7 @@
   const musicSection = document.getElementById("musicSection");
   const spotifyPlayer = document.getElementById("spotifyPlayer");
   let unlocked = false;
+  let thunderStarted = false;
 
   function launchConfetti(){
     const items = ["⭐","🎉","⚡","✨","❤️","🎂","🔥","💧","🌿"];
@@ -784,7 +784,7 @@
       el.style.left = Math.random() * window.innerWidth + "px";
       el.style.animationDelay = (Math.random() * 250) + "ms";
       document.body.appendChild(el);
-      setTimeout(() => el.remove(), 1300);
+      setTimeout(() => el.remove(), 1400);
     }
   }
 
@@ -795,6 +795,28 @@
     mainContent.classList.remove("hidden");
     birthdayFlash.classList.add("show");
     launchConfetti();
+  }
+
+  function runThunderclap(){
+    if (thunderStarted) return;
+    thunderStarted = true;
+
+    thunderBtn.disabled = true;
+    thunderBtn.textContent = "THUNDERCLAP ACTIVATED";
+
+    lightningBolt.classList.remove("fire");
+    void lightningBolt.offsetWidth;
+    lightningBolt.classList.add("fire");
+
+    setTimeout(() => {
+      musicSection.classList.add("show");
+      launchLightningBursts();
+
+      // Try autoplay if browser allows it
+      if (!spotifyPlayer.src.includes("autoplay=1")) {
+        spotifyPlayer.src += "&autoplay=1";
+      }
+    }, 850);
   }
 
   function updateCountdown(){
@@ -811,28 +833,10 @@
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    countdownEl.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    countdownEl.textContent = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
   }
 
-  if (thunderBtn) {
-    thunderBtn.addEventListener("click", () => {
-      thunderBtn.disabled = true;
-      thunderBtn.innerText = "THUNDERCLAP ACTIVATED";
-      lightningBolt.classList.remove("fire");
-      void lightningBolt.offsetWidth;
-      lightningBolt.classList.add("fire");
-
-      setTimeout(() => {
-        musicSection.style.display = "block";
-        launchLightningBursts();
-
-        // Try autoplay if browser allows it
-        if (!spotifyPlayer.src.includes("autoplay=1")) {
-          spotifyPlayer.src += "&autoplay=1";
-        }
-      }, 850);
-    });
-  }
+  thunderBtn.addEventListener("click", runThunderclap);
 
   setInterval(updateCountdown, 1000);
   updateCountdown();
