@@ -530,7 +530,7 @@
     new Date().toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
 
   // TEST VERSION: unlocks in 10 seconds
-  const birthday = new Date("2026-04-01T00:00:00").getTime();
+  const birthday = new Date().getTime() + 10000;
 
   // FINAL VERSION:
   // const birthday = new Date("2026-04-01T00:00:00").getTime();
