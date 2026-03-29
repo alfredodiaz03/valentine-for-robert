@@ -14,8 +14,6 @@
       --bg1:#07111f;
       --bg2:#13243f;
       --panel:#0f172a;
-      --panel2:#172033;
-      --panel3:#1f2c46;
       --line:#334155;
       --text:#e5e7eb;
       --muted:#cbd5e1;
@@ -546,7 +544,7 @@
         <section class="section">
           <h2>🎶 Battle Theme</h2>
           <p style="margin:0 0 12px; line-height:1.7;">
-            Press play below, then enjoy the rest of the page while it plays ⚡
+            This is your birthday theme. Press play when you’re ready ⚡
           </p>
 
           <div class="spotifyWrap">
@@ -556,8 +554,8 @@
               width="100%"
               height="152"
               frameborder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="eager">
+              allow="encrypted-media"
+              loading="lazy">
             </iframe>
           </div>
         </section>
@@ -628,10 +626,10 @@
   document.getElementById("dateStamp").textContent =
     new Date().toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
 
-  // TEST VERSION: unlocks in 10 seconds
+  // TEST VERSION
   const birthday = new Date().getTime() + 10000;
 
-  // FINAL VERSION:
+  // FINAL VERSION
   // const birthday = new Date("2026-04-01T00:00:00").getTime();
 
   const countdownEl = document.getElementById("countdown");
@@ -658,7 +656,6 @@
   function unlockBirthday(){
     if (unlocked) return;
     unlocked = true;
-
     countdownEl.innerHTML = "LEVEL 32 UNLOCKED";
     mainContent.classList.remove("hidden");
     birthdayFlash.classList.add("show");
