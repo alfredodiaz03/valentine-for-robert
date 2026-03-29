@@ -1,845 +1,223 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Trainer Robert // Level 32</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --bg1:#07111f;
-      --bg2:#13243f;
-      --line:#334155;
-      --text:#e5e7eb;
-      --muted:#cbd5e1;
-      --yellow:#facc15;
-      --blue:#38bdf8;
-      --green:#22c55e;
-      --purple:#a855f7;
-      --white:#ffffff;
-      --shadow:0 20px 50px rgba(0,0,0,.45);
-    }
-
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-      min-height:100vh;
-      background:
-        radial-gradient(circle at top left, rgba(56,189,248,.25), transparent 24%),
-        radial-gradient(circle at top right, rgba(239,68,68,.18), transparent 20%),
-        radial-gradient(circle at bottom right, rgba(168,85,247,.18), transparent 20%),
-        linear-gradient(135deg, var(--bg1), var(--bg2));
-      overflow-x:hidden;
-    }
-
-    .scanlines::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          rgba(255,255,255,.018) 0px,
-          rgba(255,255,255,.018) 1px,
-          transparent 2px,
-          transparent 4px
-        );
-      z-index:1;
-    }
-
-    .wrap{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      position:relative;
-      z-index:2;
-    }
-
-    .screen{
-      width:min(1020px,100%);
-      background:linear-gradient(180deg, #0b1324, #101827);
-      border:4px solid var(--yellow);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-
-    .screen::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:linear-gradient(180deg, rgba(255,255,255,.04), transparent 18%, transparent 80%, rgba(255,255,255,.03));
-    }
-
-    .topbar{
-      background:linear-gradient(90deg, #dc2626, #f59e0b 55%, #facc15);
-      color:#111827;
-      padding:14px 18px;
-      border-bottom:4px solid var(--yellow);
-      font-family:"Press Start 2P", cursive;
-      font-size:11px;
-      line-height:1.8;
-      text-align:center;
-      letter-spacing:.4px;
-    }
-
-    .inner{
-      padding:22px;
-    }
-
-    h1{
-      margin:0 0 10px;
-      text-align:center;
-      font-family:"Press Start 2P", cursive;
-      font-size:clamp(18px, 3vw, 30px);
-      line-height:1.7;
-      color:var(--yellow);
-      text-shadow:2px 2px 0 rgba(0,0,0,.35);
-    }
-
-    .subtitle{
-      text-align:center;
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.8;
-      margin:0 0 18px;
-      font-weight:600;
-    }
-
-    .hudRow{
-      display:grid;
-      grid-template-columns:1fr 240px;
-      gap:16px;
-      margin-bottom:18px;
-    }
-
-    @media (max-width:780px){
-      .hudRow{ grid-template-columns:1fr; }
-    }
-
-    .countBox,
-    .sideBox{
-      background:linear-gradient(180deg, #182236, #101827);
-      border:2px solid var(--blue);
-      border-radius:18px;
-      padding:18px;
-      box-shadow:inset 0 0 0 2px rgba(255,255,255,.04);
-    }
-
-    .sideBox{ border-color:var(--purple); }
-
-    .countLabel,
-    .sideLabel{
-      font-family:"Press Start 2P", cursive;
-      color:var(--blue);
-      font-size:11px;
-      line-height:1.8;
-    }
-
-    .sideLabel{ color:#d8b4fe; }
-
-    .countdown{
-      font-size:clamp(26px,6vw,44px);
-      font-weight:800;
-      color:var(--white);
-      margin:16px 0 8px;
-    }
-
-    .mini{
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.6;
-    }
-
-    .badgeRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:12px;
-    }
-
-    .badge{
-      background:#0f172a;
-      border:1px solid var(--line);
-      color:var(--text);
-      border-radius:999px;
-      padding:8px 12px;
-      font-size:13px;
-      font-weight:700;
-    }
-
-    .trainerCard{
-      display:grid;
-      grid-template-columns:240px 1fr;
-      gap:18px;
-      background:linear-gradient(180deg, #1a2438, #111827);
-      border:2px solid var(--yellow);
-      border-radius:20px;
-      padding:18px;
-      margin:18px 0;
-    }
-
-    @media (max-width:760px){
-      .trainerCard{ grid-template-columns:1fr; }
-    }
-
-    .avatarPanel{
-      background:linear-gradient(180deg, #0f172a, #172033);
-      border:2px solid var(--line);
-      border-radius:16px;
-      padding:14px;
-      text-align:center;
-    }
-
-    .avatarBadge{
-      font-family:"Press Start 2P", cursive;
-      font-size:10px;
-      color:var(--yellow);
-      margin-bottom:12px;
-      line-height:1.7;
-    }
-
-    .avatarCircle{
-      width:132px;
-      height:132px;
-      margin:0 auto 14px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:
-        radial-gradient(circle at center, var(--white) 0 34%, transparent 35%),
-        linear-gradient(180deg, #ef4444 0 47%, #111827 47% 53%, #ffffff 53% 100%);
-      border:4px solid var(--white);
-      box-shadow:0 8px 20px rgba(0,0,0,.35);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .avatarCircle span{
-      position:relative;
-      z-index:2;
-      background:rgba(255,255,255,.88);
-      color:#111827;
-      font-family:"Press Start 2P", cursive;
-      font-size:22px;
-      padding:4px 6px;
-      border-radius:8px;
-    }
-
-    .miniMonRow{
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      margin:8px 0 6px;
-      flex-wrap:wrap;
-    }
-
-    .miniMon{
-      width:34px;
-      height:34px;
-      border-radius:10px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:18px;
-      background:#111827;
-      border:1px solid var(--line);
-    }
-
-    .smallStat{
-      background:#111827;
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:10px;
-      margin-top:8px;
-      font-size:14px;
-      color:var(--muted);
-    }
-
-    .trainerInfo{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:12px;
-    }
-
-    @media (max-width:640px){
-      .trainerInfo{ grid-template-columns:1fr; }
-    }
-
-    .infoBox{
-      background:#0f172a;
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:14px;
-    }
-
-    .infoLabel{
-      font-family:"Press Start 2P", cursive;
-      font-size:9px;
-      color:var(--blue);
-      margin-bottom:10px;
-      line-height:1.7;
-    }
-
-    .infoValue{
-      font-size:16px;
-      font-weight:700;
-      color:var(--white);
-    }
-
-    .meter{
-      width:100%;
-      height:12px;
-      background:#0b1220;
-      border-radius:999px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      margin-top:10px;
-    }
-
-    .meterFill{
-      height:100%;
-      background:linear-gradient(90deg, var(--green), #4ade80);
-      width:92%;
-    }
-
-    .hidden{ display:none; }
-
-    .section{
-      background:linear-gradient(180deg, #172033, #111827);
-      border:1px solid var(--line);
-      border-left:6px solid var(--yellow);
-      border-radius:18px;
-      padding:18px;
-      margin:16px 0;
-    }
-
-    .section h2{
-      margin:0 0 12px;
-      font-size:19px;
-      color:var(--white);
-    }
-
-    .section p{
-      line-height:1.75;
-      color:var(--text);
-      margin:0 0 12px;
-    }
-
-    ul{
-      margin:8px 0 0 18px;
-      padding:0;
-      line-height:1.8;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:12px;
-    }
-
-    @media (max-width:700px){
-      .grid{ grid-template-columns:1fr; }
-    }
-
-    .photo{
-      width:100%;
-      aspect-ratio:4/3;
-      object-fit:cover;
-      border-radius:16px;
-      border:2px solid var(--yellow);
-      box-shadow:0 12px 28px rgba(0,0,0,.28);
-      background:#0f172a;
-    }
-
-    .spotifyWrap{
-      border-radius:16px;
-      overflow:hidden;
-      box-shadow:0 12px 30px rgba(0,0,0,.28);
-      border:2px solid var(--green);
-      max-height:0;
-      opacity:0;
-      margin-top:0;
-      transition:max-height .5s ease, opacity .35s ease, margin-top .35s ease;
-    }
-
-    .spotifyWrap.show{
-      max-height:220px;
-      opacity:1;
-      margin-top:14px;
-    }
-
-    .thunderSection{ text-align:center; }
-
-    .thunderBtn{
-      margin:10px 0 15px;
-      padding:14px 20px;
-      border-radius:12px;
-      border:none;
-      background:linear-gradient(180deg, #facc15, #f59e0b);
-      color:#111827;
-      font-weight:800;
-      cursor:pointer;
-      font-family:"Press Start 2P", cursive;
-      font-size:11px;
-      line-height:1.6;
-      box-shadow:0 10px 20px rgba(0,0,0,.25);
-    }
-
-    .thunderBtn:hover{ filter:brightness(1.05); }
-
-    .thunderBtn:disabled{
-      opacity:.8;
-      cursor:default;
-    }
-
-    .thunderStage{
-      position:relative;
-      height:120px;
-      border-radius:18px;
-      border:2px solid var(--blue);
-      background:
-        radial-gradient(circle at 20% 30%, rgba(56,189,248,.18), transparent 20%),
-        radial-gradient(circle at 80% 20%, rgba(250,204,21,.12), transparent 18%),
-        linear-gradient(180deg, #0f172a, #101827);
-      overflow:hidden;
-      margin-bottom:16px;
-    }
-
-    .stormCloud{
-      position:absolute;
-      left:20px;
-      top:50%;
-      transform:translateY(-50%);
-      font-size:42px;
-      z-index:2;
-    }
-
-    .speakerOrb{
-      position:absolute;
-      right:20px;
-      top:50%;
-      transform:translateY(-50%);
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:linear-gradient(180deg, #22c55e, #16a34a);
-      color:#06281a;
-      font-size:28px;
-      font-weight:900;
-      border:3px solid #d1fae5;
-      box-shadow:0 8px 20px rgba(0,0,0,.28);
-      z-index:2;
-    }
-
-    .lightningBolt{
-      position:absolute;
-      left:72px;
-      top:50%;
-      transform:translateY(-50%) scale(.75);
-      font-size:44px;
-      opacity:0;
-      z-index:3;
-      filter:drop-shadow(0 0 14px rgba(250,204,21,.9));
-    }
-
-    .lightningBolt.fire{
-      animation:boltShoot 900ms ease forwards;
-    }
-
-    @keyframes boltShoot{
-      0%{
-        left:72px;
-        opacity:0;
-        transform:translateY(-50%) scale(.75);
-      }
-      12%{
-        opacity:1;
-      }
-      100%{
-        left:calc(100% - 108px);
-        opacity:1;
-        transform:translateY(-50%) scale(1.1);
-      }
-    }
-
-    .flash{
-      position:fixed;
-      inset:0;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      background:rgba(15,23,42,.75);
-      backdrop-filter:blur(6px);
-      z-index:9999;
-      padding:20px;
-      text-align:center;
-    }
-
-    .flash.show{
-      display:flex;
-      animation:flashFade 2.6s ease forwards;
-    }
-
-    .flashText{
-      font-family:"Press Start 2P", cursive;
-      color:var(--yellow);
-      font-size:clamp(24px,5vw,54px);
-      line-height:1.8;
-      text-shadow:0 6px 18px rgba(0,0,0,.45);
-    }
-
-    @keyframes flashFade{
-      0%{opacity:0}
-      15%{opacity:1}
-      75%{opacity:1}
-      100%{opacity:0}
-    }
-
-    .fx{
-      position:fixed;
-      bottom:-30px;
-      font-size:24px;
-      pointer-events:none;
-      animation:floatUp var(--dur) ease-out forwards;
-      transform:translateX(-50%);
-      z-index:10000;
-    }
-
-    .screenBolt{
-      position:fixed;
-      top:-20px;
-      font-size:34px;
-      pointer-events:none;
-      z-index:10001;
-      animation:screenBolt 1.2s ease-out forwards;
-      filter:drop-shadow(0 0 16px rgba(250,204,21,.85));
-    }
-
-    @keyframes screenBolt{
-      0%{opacity:0; transform:translateY(0) scale(.7);}
-      10%{opacity:1;}
-      100%{opacity:0; transform:translateY(220px) scale(1.2);}
-    }
-
-    @keyframes floatUp{
-      0%{opacity:0; transform:translateX(-50%) translateY(0) rotate(0deg);}
-      12%{opacity:1;}
-      100%{
-        opacity:0;
-        transform:translateX(calc(-50% + var(--drift))) translateY(calc(-1 * var(--rise))) rotate(var(--rot));
-      }
-    }
-
-    .footer{
-      text-align:center;
-      font-size:13px;
-      color:var(--muted);
-      margin-top:22px;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Trainer Robert // Level 32</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1:#07111f;
+  --bg2:#13243f;
+  --line:#334155;
+  --text:#e5e7eb;
+  --muted:#cbd5e1;
+  --yellow:#facc15;
+  --blue:#38bdf8;
+  --green:#22c55e;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Montserrat,system-ui;
+  color:var(--text);
+  background:linear-gradient(135deg, var(--bg1), var(--bg2));
+}
+
+.wrap{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+
+.screen{
+  width:min(1000px,100%);
+  background:#101827;
+  border:4px solid var(--yellow);
+  border-radius:24px;
+  padding:22px;
+}
+
+h1{
+  text-align:center;
+  font-family:"Press Start 2P";
+  color:var(--yellow);
+}
+
+.section{
+  background:#172033;
+  border-left:6px solid var(--yellow);
+  border-radius:18px;
+  padding:18px;
+  margin:16px 0;
+}
+
+.thunderStage{
+  position:relative;
+  height:120px;
+  border-radius:18px;
+  border:2px solid var(--blue);
+  background:#0f172a;
+  overflow:hidden;
+  margin-bottom:16px;
+}
+
+.stormCloud{
+  position:absolute;
+  left:20px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:42px;
+}
+
+.speakerOrb{
+  position:absolute;
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#22c55e;
+  font-size:28px;
+  font-weight:900;
+}
+
+.lightningBolt{
+  position:absolute;
+  left:72px;
+  top:50%;
+  transform:translateY(-50%) scale(.75);
+  font-size:44px;
+  opacity:0;
+}
+
+.lightningBolt.fire{
+  animation:boltShoot 900ms ease forwards;
+}
+
+@keyframes boltShoot{
+  0%{ left:72px; opacity:0; }
+  15%{ opacity:1; }
+  100%{ left:calc(100% - 108px); opacity:1; }
+}
+
+.thunderBtn{
+  padding:14px 20px;
+  border-radius:12px;
+  border:none;
+  background:linear-gradient(180deg, #facc15, #f59e0b);
+  font-weight:800;
+  font-family:"Press Start 2P";
+  cursor:pointer;
+}
+
+.videoWrap{
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:all .5s ease;
+}
+
+.videoWrap.show{
+  max-height:400px;
+  opacity:1;
+  margin-top:15px;
+}
+
+.screenBolt{
+  position:fixed;
+  top:-20px;
+  font-size:34px;
+  pointer-events:none;
+  animation:screenBolt 1.2s ease-out forwards;
+}
+
+@keyframes screenBolt{
+  0%{opacity:0; transform:translateY(0);}
+  10%{opacity:1;}
+  100%{opacity:0; transform:translateY(220px);}
+}
+</style>
 </head>
 
-<body class="scanlines">
-
-<div class="flash" id="birthdayFlash">
-  <div class="flashText">HAPPY BIRTHDAY<br>TRAINER ROBERT 🎉</div>
-</div>
+<body>
 
 <div class="wrap">
-  <main class="screen">
-    <div class="topbar">TRAINER FILE // SPECIAL BIRTHDAY UNLOCK</div>
+<main class="screen">
 
-    <div class="inner">
-      <h1>LEVEL 32 LOADING...</h1>
-      <p class="subtitle">
-        Trainer Card Status: Pending<br>
-        Commence countdown to approved status.
-      </p>
+<h1>LEVEL 32 UNLOCKED</h1>
 
-      <div class="hudRow">
-        <section class="countBox">
-          <div class="countLabel">NEXT EVOLUTION UNLOCKS IN</div>
-          <div class="countdown" id="countdown">Loading...</div>
-          <div class="mini">Authorized access begins at unlock time.</div>
-          <div class="badgeRow">
-            <div class="badge">⚡ Electric Energy</div>
-            <div class="badge">🔥 Fire Spirit</div>
-            <div class="badge">⭐ Champion Tier</div>
-          </div>
-        </section>
+<section class="section thunderSection">
+  <h2>⚡ Thunderclap Activation</h2>
+  <p>Push for thunderclap to reveal the birthday theme ⚡</p>
 
-        <section class="sideBox">
-          <div class="sideLabel">TRAINER PARTY</div>
-          <div class="miniMonRow">
-            <div class="miniMon">⚡</div>
-            <div class="miniMon">🔥</div>
-            <div class="miniMon">💧</div>
-            <div class="miniMon">🌿</div>
-            <div class="miniMon">⭐</div>
-            <div class="miniMon">🛡️</div>
-          </div>
-          <div class="mini" style="margin-top:12px;">
-            Special birthday event queued.
-          </div>
-        </section>
-      </div>
+  <div class="thunderStage">
+    <div class="stormCloud">☁️</div>
+    <div class="lightningBolt" id="lightningBolt">⚡</div>
+    <div class="speakerOrb">♫</div>
+  </div>
 
-      <div id="mainContent" class="hidden">
+  <button id="thunderBtn" class="thunderBtn">PUSH FOR THUNDERCLAP</button>
 
-        <section class="trainerCard">
-          <div class="avatarPanel">
-            <div class="avatarBadge">TRAINER ROBERT</div>
-            <div class="avatarCircle"><span>32</span></div>
-            <div class="miniMonRow">
-              <div class="miniMon">⚡</div>
-              <div class="miniMon">⭐</div>
-              <div class="miniMon">🔥</div>
-            </div>
-            <div class="smallStat">Type: Favorite Person</div>
-            <div class="smallStat">Rarity: Legendary</div>
-            <div class="smallStat">Status: Very Loved</div>
-          </div>
+  <div class="videoWrap" id="videoSection">
+    <iframe id="ytPlayer"
+      width="100%"
+      height="315"
+      src=""
+      title="YouTube video player"
+      frameborder="0"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
 
-          <div class="trainerInfo">
-            <div class="infoBox">
-              <div class="infoLabel">TRAINER NAME</div>
-              <div class="infoValue">Robert</div>
-            </div>
-            <div class="infoBox">
-              <div class="infoLabel">LEVEL</div>
-              <div class="infoValue">32 Unlocked</div>
-            </div>
-            <div class="infoBox">
-              <div class="infoLabel">START YEAR</div>
-              <div class="infoValue">1994</div>
-            </div>
-            <div class="infoBox">
-              <div class="infoLabel">CURRENT STATUS</div>
-              <div class="infoValue">Elite Tier</div>
-            </div>
-            <div class="infoBox">
-              <div class="infoLabel">SPECIAL SKILL</div>
-              <div class="infoValue">Making my life better</div>
-            </div>
-            <div class="infoBox">
-              <div class="infoLabel">MY FAVORITE THING</div>
-              <div class="infoValue">You</div>
-            </div>
-            <div class="infoBox" style="grid-column:1 / -1;">
-              <div class="infoLabel">BOND LEVEL</div>
-              <div class="infoValue">Maxed out</div>
-              <div class="meter"><div class="meterFill"></div></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section thunderSection">
-          <h2>⚡ Thunderclap Activation</h2>
-          <p style="margin:0 0 12px; line-height:1.7;">
-            Push for thunderclap to reveal the birthday theme ⚡
-          </p>
-
-          <div class="thunderStage">
-            <div class="stormCloud">☁️</div>
-            <div class="lightningBolt" id="lightningBolt">⚡</div>
-            <div class="speakerOrb">♫</div>
-          </div>
-
-          <button id="thunderBtn" class="thunderBtn">PUSH FOR THUNDERCLAP</button>
-
-          <div class="spotifyWrap" id="musicSection">
-            <iframe
-              id="spotifyPlayer"
-              style="border-radius:12px"
-              src="https://open.spotify.com/embed/track/3mNH9BXFcNElEFbgKqmq1J?utm_source=generator&theme=0"
-              width="100%"
-              height="152"
-              frameborder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy">
-            </iframe>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2>📸 Adventure Log</h2>
-          <div class="grid">
-            <img class="photo" src="images/calirex.webp" alt="Calyrex image">
-            <img class="photo" src="images/rb.jpg" alt="Raikou-style image">
-          </div>
-        </section>
-
-        <section class="section">
-          <h2>🏆 Trainer Achievements</h2>
-          <p>
-            I am so proud of the man you are and everything you’ve become. The way you show up, the way you handle life, and the way you keep moving forward says so much about your heart and your strength.
-          </p>
-          <p>
-            You inspire me more than you probably realize. I hope this year reminds you how capable, special, and deeply admired you are.
-          </p>
-        </section>
-
-        <section class="section">
-          <h2>🙏 Support Team</h2>
-          <ul>
-            <li>Thank you for loving me the way you do.</li>
-            <li>Thank you for making me feel safe and supported.</li>
-            <li>Thank you for being patient, steady, and kind.</li>
-            <li>Thank you for being someone I can always count on.</li>
-          </ul>
-        </section>
-
-        <section class="section">
-          <h2>❤️ Favorite Person</h2>
-          <p>
-            I love you because you make life feel lighter, warmer, and happier. You are my favorite person to laugh with, dream with, and just exist with.
-          </p>
-          <p>
-            You make ordinary days feel special, and I feel lucky that I get to love you through all of your chapters — including Level 32.
-          </p>
-        </section>
-
-        <section class="section">
-          <h2>🎁 Birthday Reward Unlocked</h2>
-          <p>
-            Happy 32nd birthday, my love.
-          </p>
-          <p>
-            I am so proud of you.<br>
-            I am so thankful for you.<br>
-            And I love you more than I can explain.
-          </p>
-          <p>
-            I’ll always choose you. ❤️
-          </p>
-          <p>
-            P.S. Hope you enjoy the DLC and Pokémon Champions.
-          </p>
-        </section>
-      </div>
-
-      <div class="footer">Made by me, for you — <span id="dateStamp"></span></div>
-    </div>
-  </main>
+</main>
 </div>
 
 <script>
-  document.getElementById("dateStamp").textContent =
-    new Date().toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
+const thunderBtn = document.getElementById("thunderBtn");
+const lightningBolt = document.getElementById("lightningBolt");
+const videoSection = document.getElementById("videoSection");
+const ytPlayer = document.getElementById("ytPlayer");
 
-  // TEST VERSION
-  const birthday = new Date().getTime() + 10000;
-
-  // FINAL VERSION
-  // const birthday = new Date("2026-04-01T00:00:00").getTime();
-
-  const countdownEl = document.getElementById("countdown");
-  const mainContent = document.getElementById("mainContent");
-  const birthdayFlash = document.getElementById("birthdayFlash");
-  const thunderBtn = document.getElementById("thunderBtn");
-  const lightningBolt = document.getElementById("lightningBolt");
-  const musicSection = document.getElementById("musicSection");
-  const spotifyPlayer = document.getElementById("spotifyPlayer");
-  let unlocked = false;
-  let thunderStarted = false;
-
-  function launchConfetti(){
-    const items = ["⭐","🎉","⚡","✨","❤️","🎂","🔥","💧","🌿"];
-    for(let i = 0; i < 48; i++){
-      const el = document.createElement("div");
-      el.className = "fx";
-      el.textContent = items[Math.floor(Math.random() * items.length)];
-      el.style.left = Math.random() * window.innerWidth + "px";
-      el.style.setProperty("--rise", (280 + Math.random() * 420) + "px");
-      el.style.setProperty("--drift", (Math.random() * 260 - 130) + "px");
-      el.style.setProperty("--rot", (Math.random() * 220 - 110) + "deg");
-      el.style.setProperty("--dur", (1300 + Math.random() * 1400) + "ms");
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 3000);
-    }
+function launchLightningBursts(){
+  for(let i = 0; i < 15; i++){
+    const el = document.createElement("div");
+    el.className = "screenBolt";
+    el.textContent = "⚡";
+    el.style.left = Math.random() * window.innerWidth + "px";
+    el.style.animationDelay = (Math.random() * 300) + "ms";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 1400);
   }
+}
 
-  function launchLightningBursts(){
-    for(let i = 0; i < 16; i++){
-      const el = document.createElement("div");
-      el.className = "screenBolt";
-      el.textContent = "⚡";
-      el.style.left = Math.random() * window.innerWidth + "px";
-      el.style.animationDelay = (Math.random() * 250) + "ms";
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 1400);
-    }
-  }
+thunderBtn.addEventListener("click", () => {
 
-  function unlockBirthday(){
-    if (unlocked) return;
-    unlocked = true;
-    countdownEl.innerHTML = "LEVEL 32 UNLOCKED";
-    mainContent.classList.remove("hidden");
-    birthdayFlash.classList.add("show");
-    launchConfetti();
-  }
+  lightningBolt.classList.add("fire");
 
-  function runThunderclap(){
-    if (thunderStarted) return;
-    thunderStarted = true;
+  setTimeout(() => {
+    videoSection.classList.add("show");
 
-    thunderBtn.disabled = true;
-    thunderBtn.textContent = "THUNDERCLAP ACTIVATED";
+    // AUTOPLAY VIDEO
+    ytPlayer.src = "https://www.youtube.com/embed/R4GIyJxvk94?autoplay=1&mute=0";
 
-    lightningBolt.classList.remove("fire");
-    void lightningBolt.offsetWidth;
-    lightningBolt.classList.add("fire");
+    launchLightningBursts();
+  }, 900);
 
-    setTimeout(() => {
-      musicSection.classList.add("show");
-      launchLightningBursts();
-
-      // Try autoplay if browser allows it
-      if (!spotifyPlayer.src.includes("autoplay=1")) {
-        spotifyPlayer.src += "&autoplay=1";
-      }
-    }, 850);
-  }
-
-  function updateCountdown(){
-    const now = new Date().getTime();
-    const distance = birthday - now;
-
-    if(distance <= 0){
-      unlockBirthday();
-      return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    countdownEl.textContent = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
-  }
-
-  thunderBtn.addEventListener("click", runThunderclap);
-
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+});
 </script>
 
 </body>
