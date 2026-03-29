@@ -371,122 +371,11 @@
       background:#0f172a;
     }
 
-    .mediaWrap{
+    .videoWrap{
       border-radius:16px;
       overflow:hidden;
       box-shadow:0 12px 30px rgba(0,0,0,.28);
       border:2px solid var(--green);
-      max-height:0;
-      opacity:0;
-      margin-top:0;
-      transition:max-height .5s ease, opacity .35s ease, margin-top .35s ease;
-    }
-
-    .mediaWrap.show{
-      max-height:400px;
-      opacity:1;
-      margin-top:14px;
-    }
-
-    .thunderSection{
-      text-align:center;
-    }
-
-    .thunderBtn{
-      margin:10px 0 15px;
-      padding:14px 20px;
-      border-radius:12px;
-      border:none;
-      background:linear-gradient(180deg, #facc15, #f59e0b);
-      color:#111827;
-      font-weight:800;
-      cursor:pointer;
-      font-family:"Press Start 2P", cursive;
-      font-size:11px;
-      line-height:1.6;
-      box-shadow:0 10px 20px rgba(0,0,0,.25);
-    }
-
-    .thunderBtn:hover{
-      filter:brightness(1.05);
-    }
-
-    .thunderBtn:disabled{
-      opacity:.8;
-      cursor:default;
-    }
-
-    .thunderStage{
-      position:relative;
-      height:120px;
-      border-radius:18px;
-      border:2px solid var(--blue);
-      background:
-        radial-gradient(circle at 20% 30%, rgba(56,189,248,.18), transparent 20%),
-        radial-gradient(circle at 80% 20%, rgba(250,204,21,.12), transparent 18%),
-        linear-gradient(180deg, #0f172a, #101827);
-      overflow:hidden;
-      margin-bottom:16px;
-    }
-
-    .stormCloud{
-      position:absolute;
-      left:20px;
-      top:50%;
-      transform:translateY(-50%);
-      font-size:42px;
-      z-index:2;
-    }
-
-    .speakerOrb{
-      position:absolute;
-      right:20px;
-      top:50%;
-      transform:translateY(-50%);
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:linear-gradient(180deg, #22c55e, #16a34a);
-      color:#06281a;
-      font-size:28px;
-      font-weight:900;
-      border:3px solid #d1fae5;
-      box-shadow:0 8px 20px rgba(0,0,0,.28);
-      z-index:2;
-    }
-
-    .lightningBolt{
-      position:absolute;
-      left:72px;
-      top:50%;
-      transform:translateY(-50%) scale(.75);
-      font-size:44px;
-      opacity:0;
-      z-index:3;
-      filter:drop-shadow(0 0 14px rgba(250,204,21,.9));
-    }
-
-    .lightningBolt.fire{
-      animation:boltShoot 900ms ease forwards;
-    }
-
-    @keyframes boltShoot{
-      0%{
-        left:72px;
-        opacity:0;
-        transform:translateY(-50%) scale(.75);
-      }
-      12%{
-        opacity:1;
-      }
-      100%{
-        left:calc(100% - 108px);
-        opacity:1;
-        transform:translateY(-50%) scale(1.1);
-      }
     }
 
     .flash{
@@ -530,22 +419,6 @@
       animation:floatUp var(--dur) ease-out forwards;
       transform:translateX(-50%);
       z-index:10000;
-    }
-
-    .screenBolt{
-      position:fixed;
-      top:-20px;
-      font-size:34px;
-      pointer-events:none;
-      z-index:10001;
-      animation:screenBolt 1.2s ease-out forwards;
-      filter:drop-shadow(0 0 16px rgba(250,204,21,.85));
-    }
-
-    @keyframes screenBolt{
-      0%{opacity:0; transform:translateY(0) scale(.7);}
-      10%{opacity:1;}
-      100%{opacity:0; transform:translateY(220px) scale(1.2);}
     }
 
     @keyframes floatUp{
@@ -660,27 +533,18 @@
           </div>
         </section>
 
-        <section class="section thunderSection">
-          <h2>⚡ Thunderclap Activation</h2>
+        <section class="section">
+          <h2>🎶 Battle Theme</h2>
           <p style="margin:0 0 12px; line-height:1.7;">
-            Push for thunderclap to reveal the birthday theme ⚡
+            Press play below, then enjoy the rest of the page while it plays ⚡
           </p>
 
-          <div class="thunderStage">
-            <div class="stormCloud">☁️</div>
-            <div class="lightningBolt" id="lightningBolt">⚡</div>
-            <div class="speakerOrb">♫</div>
-          </div>
-
-          <button id="thunderBtn" class="thunderBtn">PUSH FOR THUNDERCLAP</button>
-
-          <div class="mediaWrap" id="musicSection">
+          <div class="videoWrap">
             <iframe
-              id="ytPlayer"
               style="border-radius:12px"
               width="100%"
               height="315"
-              src=""
+              src="https://www.youtube.com/embed/R4GIyJxvk94"
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -765,13 +629,8 @@
   const countdownEl = document.getElementById("countdown");
   const mainContent = document.getElementById("mainContent");
   const birthdayFlash = document.getElementById("birthdayFlash");
-  const thunderBtn = document.getElementById("thunderBtn");
-  const lightningBolt = document.getElementById("lightningBolt");
-  const musicSection = document.getElementById("musicSection");
-  const ytPlayer = document.getElementById("ytPlayer");
 
   let unlocked = false;
-  let thunderStarted = false;
 
   function launchConfetti(){
     const items = ["⭐","🎉","⚡","✨","❤️","🎂","🔥","💧","🌿"];
@@ -789,18 +648,6 @@
     }
   }
 
-  function launchLightningBursts(){
-    for(let i = 0; i < 16; i++){
-      const el = document.createElement("div");
-      el.className = "screenBolt";
-      el.textContent = "⚡";
-      el.style.left = Math.random() * window.innerWidth + "px";
-      el.style.animationDelay = (Math.random() * 250) + "ms";
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 1400);
-    }
-  }
-
   function unlockBirthday(){
     if (unlocked) return;
     unlocked = true;
@@ -808,24 +655,6 @@
     mainContent.classList.remove("hidden");
     birthdayFlash.classList.add("show");
     launchConfetti();
-  }
-
-  function runThunderclap(){
-    if (thunderStarted) return;
-    thunderStarted = true;
-
-    thunderBtn.disabled = true;
-    thunderBtn.textContent = "THUNDERCLAP ACTIVATED";
-
-    lightningBolt.classList.remove("fire");
-    void lightningBolt.offsetWidth;
-    lightningBolt.classList.add("fire");
-
-    setTimeout(() => {
-      musicSection.classList.add("show");
-      ytPlayer.src = "https://www.youtube.com/embed/R4GIyJxvk94?autoplay=1&mute=0";
-      launchLightningBursts();
-    }, 850);
   }
 
   function updateCountdown(){
@@ -844,8 +673,6 @@
 
     countdownEl.textContent = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
   }
-
-  thunderBtn.addEventListener("click", runThunderclap);
 
   setInterval(updateCountdown, 1000);
   updateCountdown();
