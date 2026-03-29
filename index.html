@@ -565,8 +565,8 @@
         <section class="section">
           <h2>📸 Adventure Log</h2>
           <div class="grid">
-            <img class="photo" src="images/us1.jpg" alt="Us photo 1">
-            <img class="photo" src="images/us2.jpg" alt="Us photo 2">
+            <img class="photo" src="images/calirex.webp" alt="Calyrex image">
+            <img class="photo" src="images/rb.jpg" alt="Raikou-style image">
           </div>
         </section>
 
@@ -586,7 +586,7 @@
             Press start to play the birthday theme ⚡
           </p>
 
-          <button id="startMusicBtn" class="startBtn">▶ PRESS START</button>
+          <button id="startMusicBtn" class="startBtn">▶ START ADVENTURE</button>
 
           <div class="spotifyWrap">
             <iframe
@@ -619,7 +619,7 @@
             I love you because you make life feel lighter, warmer, and happier. You are my favorite person to laugh with, dream with, and just exist with.
           </p>
           <p>
-            I hope you have the best birthday, and I really hope you enjoy your Legends ZA DLC and Pokémon Champions too. You deserve a year full of fun, excitement, and things that make you happy.
+            You make ordinary days feel special, and I feel lucky that I get to love you through all of your chapters — including Level 32.
           </p>
         </section>
 
@@ -636,6 +636,9 @@
           <p>
             I’ll always choose you. ❤️
           </p>
+          <p>
+            P.S. Hope you enjoy the DLC and Pokémon Champions.
+          </p>
         </section>
       </div>
 
@@ -648,7 +651,7 @@
   document.getElementById("dateStamp").textContent =
     new Date().toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
 
-  // TEST VERSION: change this line to preview immediately
+  // TEST VERSION: unlocks in 10 seconds
   const birthday = new Date().getTime() + 10000;
 
   // FINAL VERSION:
@@ -709,7 +712,7 @@
       if (!spotifyPlayer.src.includes("autoplay=1")) {
         spotifyPlayer.src += "&autoplay=1";
       }
-      startBtn.innerText = "PLAYING...";
+      startBtn.innerText = "THEME ACTIVE";
       startBtn.style.background = "#16a34a";
     });
   }
