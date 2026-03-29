@@ -387,7 +387,7 @@
       left:10px;
       bottom:10px;
       font-size:28px;
-      transition:all .6s ease;
+      transition:left .6s ease, bottom .6s ease;
     }
 
     .pokemonTarget{
@@ -420,7 +420,7 @@
 
     .secondary{
       background:#334155;
-      color:white;
+      color:#ffffff;
     }
 
     .secret{
@@ -600,8 +600,8 @@
           </div>
 
           <div class="btnrow">
-            <button class="primary" id="throwBtn">Throw Pokéball</button>
-            <button class="secondary" id="resetBtn">Reset</button>
+            <button class="primary" id="throwBtn" type="button">Throw Pokéball</button>
+            <button class="secondary" id="resetBtn" type="button">Reset</button>
           </div>
 
           <div class="secret" id="lockedMessage">
@@ -708,12 +708,6 @@
   const countdownEl = document.getElementById("countdown");
   const mainContent = document.getElementById("mainContent");
   const birthdayFlash = document.getElementById("birthdayFlash");
-  const throwBtn = document.getElementById("throwBtn");
-  const resetBtn = document.getElementById("resetBtn");
-  const pokeball = document.getElementById("pokeball");
-  const pokemon = document.getElementById("pokemon");
-  const lockedMessage = document.getElementById("lockedMessage");
-  const musicSection = document.getElementById("musicSection");
 
   let unlocked = false;
 
@@ -759,25 +753,39 @@
     countdownEl.textContent = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
   }
 
-  throwBtn.addEventListener("click", () => {
-    pokeball.style.left = "75%";
-    pokeball.style.bottom = "80px";
+  function setupCatchGame(){
+    const throwBtn = document.getElementById("throwBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const pokeball = document.getElementById("pokeball");
+    const pokemon = document.getElementById("pokemon");
+    const lockedMessage = document.getElementById("lockedMessage");
+    const musicSection = document.getElementById("musicSection");
 
-    setTimeout(() => {
-      pokemon.innerHTML = "✨";
-      lockedMessage.style.display = "block";
-      musicSection.style.display = "block";
-    }, 600);
-  });
+    if (!throwBtn || !resetBtn || !pokeball || !pokemon || !lockedMessage || !musicSection) {
+      return;
+    }
 
-  resetBtn.addEventListener("click", () => {
-    pokeball.style.left = "10px";
-    pokeball.style.bottom = "10px";
-    pokemon.innerHTML = "⚡";
-    lockedMessage.style.display = "none";
-    musicSection.style.display = "none";
-  });
+    throwBtn.addEventListener("click", () => {
+      pokeball.style.left = "75%";
+      pokeball.style.bottom = "80px";
 
+      setTimeout(() => {
+        pokemon.textContent = "✨";
+        lockedMessage.style.display = "block";
+        musicSection.style.display = "block";
+      }, 600);
+    });
+
+    resetBtn.addEventListener("click", () => {
+      pokeball.style.left = "10px";
+      pokeball.style.bottom = "10px";
+      pokemon.textContent = "⚡";
+      lockedMessage.style.display = "none";
+      musicSection.style.display = "none";
+    });
+  }
+
+  setupCatchGame();
   setInterval(updateCountdown, 1000);
   updateCountdown();
 </script>
